@@ -27,3 +27,4 @@ ChangeLog
 tags
 openstack_dashboard/dummydb.sqlite
 *.sublime-workspace
+dlux/local/.secret_key_store

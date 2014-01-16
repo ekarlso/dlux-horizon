@@ -10,3 +10,4 @@ pytz>=2010h
 # Horizon Utility Requirements
 # for SECURE_KEY generation
 lockfile>=0.8
+-e git://github.com/openstack/horizon.git#egg=horizon
