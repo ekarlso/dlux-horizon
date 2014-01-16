@@ -50,41 +50,23 @@ Begin by cloning the horizon and dlux repositories:
 
 ::
 
-    git clone git://github.com/openstack/horizon.git
     git clone git://github.com/ekarlso/dlux-horizon.git dlux
 
-Go into ``horizon`` and install a virtual environment for your setup::
+Go into ``dlux-horizon`` and install a virtual environment for your setup::
 
-    cd horizon
-    python tools/install_venv.py
+    cd dlux-horizon
+    virtualvenv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
+    pip install -r test-requirements.txt
 
-
-Next, run ``run_tests.sh`` to have pip install Horizon dependencies:
-
-::
-
-    ./run_tests.sh
-
-Set up your ``local_settings.py`` file:
-
-::
-
-    cp ../dlux/local_settings.py.example openstack_dashboard/local/local_settings.py
+    cp dlux/local/local_settings.py.example dlux/local/local_settings.py
 
 Open up the copied ``local_settings.py`` file in your preferred text
 editor. You will want to customize several settings:
 
--  ``CONTROLLER_URL`` should point to the ODL Controller you
+-  ``DEFAULT_CONTROLLER`` should point to the ODL Controller you
    configured. It normally runs on port http://x.x.x.x/8080/v2.
-
-Install Tuskar-UI with all dependencies in your virtual environment::
-
-    tools/with_venv.sh pip install -r ../dlux/requirements.txt
-    tools/with_venv.sh pip install -e ../dlux/
-
-And enable it in Horizon::
-
-    cp ../dlux/_50_dlux.py.example openstack_dashboard/local/enabled/_50_dlux.py
 
 Starting the app
 ----------------
@@ -93,7 +75,7 @@ If everything has gone according to plan, you should be able to run:
 
 ::
 
-    tools/with_venv.sh ./manage.py runserver
+    python manage.py runserver
 
 and have the application start on port 8080. The DLUX dashboard will
 be located at http://localhost:8080/networking
@@ -109,4 +91,4 @@ and launch the server with ``0.0.0.0:8080`` on the end:
 
 ::
 
-    tools/with_venv.sh ./manage.py runserver 0.0.0.0:8080
+    python manage.py runserver 0.0.0.0:8080

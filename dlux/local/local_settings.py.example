@@ -94,9 +94,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_HOST_USER = 'djangomail'
 # EMAIL_HOST_PASSWORD = 'top-secret!'
 
+DEFAULT_CONTROLLER = ("http://localhost:8080", "localhost")
 # For multiple regions uncomment this configuration, and add (endpoint, title).
 AVAILABLE_CONTROLLERS = [
-    ("http://odl.cloudistic.me:8080/v2", "Cloudistic")
+    ("http://odl.cloudistic.me:8080", "Cloudistic")
 ]
 
 # The timezone of the server. This should correspond with the timezone
@@ -129,7 +130,7 @@ LOGGING = {
             'propagate': False,
         },
         'requests': {
-            'handlers': ['null'],
+            'handlers': ['console'],
             'propagate': False,
         },
         'horizon': {
