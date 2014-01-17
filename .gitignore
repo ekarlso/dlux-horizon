@@ -28,3 +28,4 @@ tags
 openstack_dashboard/dummydb.sqlite
 *.sublime-workspace
 dlux/local/.secret_key_store
+dlux/local/local_settings.py
