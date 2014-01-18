@@ -20,11 +20,14 @@ class ControllerBackend(object):
 
     def authenticate(self, request=None, username=None, password=None,
                      controller_url=None):
+        print "authentiating... with", locals()
         insecure = getattr(settings, 'SSL_NO_VERIFY', False)
 
         url = controller_url + settings.AUTH_PATH
+        print "url is %s" % url
 
         resp = requests.get(url, auth=(username, password))
+        print "authed with ctl and got an %i" % resp.status_code
 
         if resp.status_code == 401:
             LOG.warning("Authentication failure %s" % resp.text)
@@ -41,8 +44,5 @@ class ControllerBackend(object):
 
         if request is not None:
             request.user = user
-
-        import ipdb
-        ipdb.set_trace()
 
         return user

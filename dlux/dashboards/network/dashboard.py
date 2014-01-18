@@ -14,25 +14,20 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django import shortcuts
-from django.views.decorators import vary
+from django.utils.translation import ugettext_lazy as _
 
-from dlux.auth import views
 import horizon
 
+class OverviewPanels(horizon.PanelGroup):
+    name = _("Overview")
+    slug = "overview"
+    panels = ('overview',)
 
-def get_user_home(user):
-    if user.is_superuser:
-        return horizon.get_dashboard('admin').get_absolute_url()
-    return horizon.get_dashboard('network').get_absolute_url()
+class Network(horizon.Dashboard):
+    name = _("Network")
+    slug = "network"
+    panels = (OverviewPanels,)
+    default_panel = "overview"
+    supports_tenants = True
 
-
-@vary.vary_on_cookie
-def splash(request):
-    import pdb; pdb.set_trace()
-    if request.user.is_authenticated():
-        return shortcuts.redirect(get_user_home(request.user))
-    form = views.Login(request)
-    request.session.clear()
-    request.session.set_test_cookie()
-    return shortcuts.render(request, 'splash.html', {'form': form})
+horizon.register(Network)

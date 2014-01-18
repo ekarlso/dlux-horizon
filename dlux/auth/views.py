@@ -11,8 +11,8 @@ from django.utils.functional import curry
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 
-from .forms import Login
-from .user import set_session_from_user
+from dlux.auth.forms import Login
+from dlux.auth.user import set_session_from_user
 
 try:
     from django.utils.http import is_safe_url
@@ -27,6 +27,7 @@ LOG = logging.getLogger(__name__)
 @csrf_protect
 @never_cache
 def login(request):
+
     """ Logs a user in using the :class:`~openstack_auth.forms.Login` form. """
     # Get our initial region for the form.
     initial = {}
@@ -58,8 +59,8 @@ def login(request):
     # will erase it if we set it earlier.
 
     if request.user.is_authenticated():
+        print "User is authenticated. SEtting session cookies"
         set_session_from_user(request, request.user)
-
         controllers = dict(Login.get_controller_choices())
         controller = request.user.endpoint
         controller_name = controllers.get(controller)

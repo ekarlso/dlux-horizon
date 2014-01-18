@@ -13,7 +13,8 @@ def set_session_from_user(request, user):
 class User(AnonymousUser):
     def __init__(self, username=None, enabled=False, token=None,
                  endpoint=None):
-        self.id_ = username
+        self.id = username
+        self.pk = id
         self.username = username
         self.enabled = enabled
         token = 1
