@@ -53,7 +53,7 @@ class Login(AuthenticationForm):
 
     @staticmethod
     def get_controller_choices():
-        default_ctrl = (settings.DEFAULT_CONTROLLER, "Default Controller")
+        default_ctrl = settings.DEFAULT_CONTROLLER
         return getattr(settings, 'AVAILABLE_CONTROLLERS', [default_ctrl])
 
     @sensitive_variables()
@@ -71,6 +71,7 @@ class Login(AuthenticationForm):
                                            username=username,
                                            password=password,
                                            controller_url=ctrl)
+            print self.user_cache
             msg = 'Login successful for user "%(username)s".' % \
                 {'username': username}
             LOG.info(msg)

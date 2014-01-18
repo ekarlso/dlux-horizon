@@ -133,7 +133,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'compressor',
     'horizon',
-    'dlux.dashboards.network',
+    'dlux.dashboards.network.dashboard',
     #'openstack_auth',
 ]
 

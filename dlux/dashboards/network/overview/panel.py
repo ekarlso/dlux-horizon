@@ -1,5 +1,9 @@
 # vim: tabstop=4 shiftwidth=4 softtabstop=4
 
+# Copyright 2012 United States Government as represented by the
+# Administrator of the National Aeronautics and Space Administration.
+# All Rights Reserved.
+#
 # Copyright 2012 Nebula, Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -14,25 +18,15 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django import shortcuts
-from django.views.decorators import vary
+from django.utils.translation import ugettext_lazy as _
 
-from dlux.auth import views
 import horizon
 
-
-def get_user_home(user):
-    if user.is_superuser:
-        return horizon.get_dashboard('admin').get_absolute_url()
-    return horizon.get_dashboard('network').get_absolute_url()
+from dlux.dashboards.network import dashboard
 
 
-@vary.vary_on_cookie
-def splash(request):
-    import pdb; pdb.set_trace()
-    if request.user.is_authenticated():
-        return shortcuts.redirect(get_user_home(request.user))
-    form = views.Login(request)
-    request.session.clear()
-    request.session.set_test_cookie()
-    return shortcuts.render(request, 'splash.html', {'form': form})
+class Overview(horizon.Panel):
+    name = _("Overview")
+    slug = 'overview'
+
+dashboard.Network.register(Overview)
