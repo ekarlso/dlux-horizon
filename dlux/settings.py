@@ -134,6 +134,7 @@ INSTALLED_APPS = [
     'compressor',
     'horizon',
     'dlux.dashboards.network.dashboard',
+    'dlux.auth',
     #'openstack_auth',
 ]
 

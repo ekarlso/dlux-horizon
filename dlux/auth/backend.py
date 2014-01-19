@@ -4,8 +4,7 @@ import requests
 from django.conf import settings
 
 from dlux import exceptions
-from dlux.auth.user import User
-
+from dlux.auth.user import create_user_from_jsessionid
 
 LOG = logging.getLogger(__name__)
 
@@ -13,6 +12,15 @@ LOG = logging.getLogger(__name__)
 class ControllerBackend(object):
     # NOTE: This method doesn't work atm
     def get_user(self, user_id):
+        if (hasattr(self, 'request') and
+                user_id == self.request.session["user_id"]):
+            username = self.request.session['username']
+            jsessionid = self.request.session['jsessionid']
+            controller = self.request.session['controller_endpoint']
+            user = create_user_from_jsessionid(username, jsessionid, controller)
+            return user
+        else:
+            return None
         if user_id == self.request.session['user_id']:
             return self.request.session['user']
         else:
@@ -34,10 +42,9 @@ class ControllerBackend(object):
             raise exceptions.AuthException
 
         try:
-            user = User(
-                username=username,
-                endpoint=controller_url,
-                token=resp.cookies.get('JSESSIONID'))
+            user = create_user_from_jsessionid(username=username,
+                                               controller=controller_url,
+                                               jsessionid=resp.cookies.get('JSESSIONID'))
         except Exception as e:
             print e
             raise
