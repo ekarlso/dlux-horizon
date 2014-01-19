@@ -1,7 +1,5 @@
 import logging
 
-from threading import Thread
-
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.views import (login as django_login,
@@ -27,7 +25,6 @@ LOG = logging.getLogger(__name__)
 @csrf_protect
 @never_cache
 def login(request):
-
     """ Logs a user in using the :class:`~openstack_auth.forms.Login` form. """
     # Get our initial region for the form.
     initial = {}
@@ -72,9 +69,4 @@ def logout(request):
     msg = 'Logging out user "%(username)s".' % \
         {'username': request.user.username}
     LOG.info(msg)
-    if 'token_list' in request.session:
-        t = Thread(target=delete_all_tokens,
-                   args=(list(request.session['token_list']),))
-        t.start()
-    """ Securely logs a user out. """
     return django_logout(request)
