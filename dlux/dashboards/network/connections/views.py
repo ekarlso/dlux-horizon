@@ -14,22 +14,23 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.utils.translation import ugettext_lazy as _
+from horizon import tables as horizon_tables
+from horizon import workflows as horizon_workflows
 
-import horizon
-
-
-class NodePanels(horizon.PanelGroup):
-    name = _("Nodes")
-    slug = "node"
-    panels = ('connections', 'nodes',)
+from dlux.api import get_client
+from dlux.dashboards.network.connections import tables
+from dlux.dashboards.network.connections import workflows
 
 
-class Network(horizon.Dashboard):
-    name = _("Network")
-    slug = "network"
-    panels = (NodePanels,)
-    default_panel = "nodes"
-    supports_tenants = True
+class IndexView(horizon_tables.DataTableView):
+    template_name = "network/connections/index.html"
+    table_class = tables.ConnectionsTable
 
-horizon.register(Network)
+    def get_data(self):
+        client = get_client(self.request)
+        return client.connection_manager.list()
+
+
+class CreateView(horizon_workflows.WorkflowView):
+    workflow_class = workflows.CreateConnection
+    template = "project/conenctions/create.html"

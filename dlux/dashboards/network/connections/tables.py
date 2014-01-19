@@ -14,22 +14,24 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+
 from django.utils.translation import ugettext_lazy as _
 
-import horizon
+from horizon import tables
 
 
-class NodePanels(horizon.PanelGroup):
-    name = _("Nodes")
-    slug = "node"
-    panels = ('connections', 'nodes',)
+class LaunchLink(tables.LinkAction):
+    name = "launch"
+    verbose_name = _("Create Connection")
+    url = "horizon:network:connections:create"
+    classes = ("btn-launch", "ajax-modal")
 
 
-class Network(horizon.Dashboard):
-    name = _("Network")
-    slug = "network"
-    panels = (NodePanels,)
-    default_panel = "nodes"
-    supports_tenants = True
+class ConnectionsTable(tables.DataTable):
+    id = tables.Column('id', verbose_name='Identifier')
+    type = tables.Column('type', verbose_name='Type')
 
-horizon.register(Network)
+    class Meta:
+        name = "connections"
+        verbose_name = _('Connections')
+        table_actions = (LaunchLink,)

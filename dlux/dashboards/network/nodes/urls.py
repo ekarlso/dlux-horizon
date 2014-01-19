@@ -18,15 +18,13 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.utils.translation import ugettext_lazy as _
 
-import horizon
+from django.conf.urls import patterns  # noqa
+from django.conf.urls import url  # noqa
 
-from dlux.dashboards.network import dashboard
+from dlux.dashboards.network.nodes import views
 
-
-class Overview(horizon.Panel):
-    name = _("Overview")
-    slug = 'overview'
-
-dashboard.Network.register(Overview)
+urlpatterns = patterns(
+    'dlux.dashboards.network.nodes.views',
+    url(r'^$', views.NodesIndex.as_view(), name='index'),
+)

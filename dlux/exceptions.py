@@ -1,4 +1,4 @@
-# Copyright 2013 Hewlett-Packard Development Company, L.P.
+# Copyright 2014 Hewlett-Packard Development Company, L.P.
 #
 # Author: Endre Karlson <endre.karlson@hp.com>
 #
@@ -13,6 +13,7 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+
 
 class AuthException(Exception):
     pass

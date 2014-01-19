@@ -18,18 +18,11 @@ from django.utils.translation import ugettext_lazy as _
 
 import horizon
 
-
-class NodePanels(horizon.PanelGroup):
-    name = _("Nodes")
-    slug = "node"
-    panels = ('connections', 'nodes',)
+from dlux.dashboards.network import dashboard
 
 
-class Network(horizon.Dashboard):
-    name = _("Network")
-    slug = "network"
-    panels = (NodePanels,)
-    default_panel = "nodes"
-    supports_tenants = True
+class Connections(horizon.Panel):
+    name = _("Connections")
+    slug = 'connections'
 
-horizon.register(Network)
+dashboard.Network.register(Connections)

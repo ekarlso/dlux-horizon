@@ -18,7 +18,16 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.views.generic import TemplateView
+from horizon import tables as horizon_tables
 
-class NetworkOverview(TemplateView):
-    template_name = "overview.html"
+from dlux.api import get_client
+from dlux.dashboards.network.nodes import tables
+
+
+class NodesIndex(horizon_tables.DataTableView):
+    template_name = "network/nodes/index.html"
+    table_class = tables.NodesTable
+
+    def get_data(self):
+        client = get_client(self.request)
+        return client.nodes.list()
