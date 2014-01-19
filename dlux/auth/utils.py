@@ -1,5 +1,3 @@
-import urlparse
-
 from django.contrib import auth
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth import middleware
@@ -17,6 +15,7 @@ Calling the "patch_middleware_get_user" method somewhere like our urls.py
 file takes care of hooking it in appropriately.
 """
 
+# Monkey patching begin...
 
 def middleware_get_user(request):
     if not hasattr(request, '_cached_user'):
@@ -40,6 +39,7 @@ def patch_middleware_get_user():
     middleware.get_user = middleware_get_user
     auth.get_user = get_user
 
+# End monkey patching...
 
 # From django.contrib.auth.views
 # Added in Django 1.4.3, 1.5b2
