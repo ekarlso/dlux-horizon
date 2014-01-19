@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import patterns, url
 
 from dlux.auth.utils import patch_middleware_get_user
 

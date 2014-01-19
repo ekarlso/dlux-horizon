@@ -29,7 +29,6 @@ def get_user_home(user):
 
 @vary.vary_on_cookie
 def splash(request):
-    import pdb; pdb.set_trace()
     if request.user.is_authenticated():
         return shortcuts.redirect(get_user_home(request.user))
     form = views.Login(request)

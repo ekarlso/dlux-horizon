@@ -59,10 +59,9 @@ def login(request):
     # will erase it if we set it earlier.
 
     if request.user.is_authenticated():
-        print "User is authenticated. SEtting session cookies"
         set_session_from_user(request, request.user)
         controllers = dict(Login.get_controller_choices())
-        controller = request.user.endpoint
+        controller = request.user.controller
         controller_name = controllers.get(controller)
         request.session['controller_endpoint'] = controller
         request.session['controller_name'] = controller_name

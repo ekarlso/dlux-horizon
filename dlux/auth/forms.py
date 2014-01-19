@@ -71,7 +71,6 @@ class Login(AuthenticationForm):
                                            username=username,
                                            password=password,
                                            controller_url=ctrl)
-            print self.user_cache
             msg = 'Login successful for user "%(username)s".' % \
                 {'username': username}
             LOG.info(msg)
