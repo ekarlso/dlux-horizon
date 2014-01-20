@@ -15,6 +15,7 @@
 # under the License.
 
 from horizon import tables as horizon_tables
+from horizon import tabs as horizon_tabs
 from horizon import workflows as horizon_workflows
 
 from dlux.api import get_client

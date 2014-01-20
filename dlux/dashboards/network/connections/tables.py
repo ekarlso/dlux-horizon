@@ -17,8 +17,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from horizon import tables
 
+from dlux.utils.filters import keys_as_id
 from dlux.api import get_client
-from dlux.utils import filters
 
 
 class DeleteConnection(tables.BatchAction):
@@ -31,7 +31,7 @@ class DeleteConnection(tables.BatchAction):
 
     def action(self, request, obj_id):
         client = get_client(request)
-        node_id, node_type = obj_id.split('%')
+        node_id, node_type = obj_id.split('#')
         client.connection_manager.delete(node_type, node_id)
 
 
@@ -52,4 +52,4 @@ class ConnectionsTable(tables.DataTable):
         table_actions = (LaunchLink, DeleteConnection,)
 
     def get_object_id(self, datum):
-        return filters.keys_as_id(datum, keys=['id', 'type'])
+        return keys_as_id(datum, keys=['id', 'type'])
