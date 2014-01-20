@@ -16,11 +16,8 @@
 
 import logging
 
-from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from horizon import exceptions
 from horizon import forms
-from horizon.utils import memoized
 from horizon import workflows
 
 from dlux import api
@@ -56,5 +53,8 @@ class CreateConnection(workflows.Workflow):
 
     def handle(self, request, context):
         client = api.get_client(request)
-        client.connection_manager.create(**context)
-        return True
+        try:
+            client.connection_manager.create(**context)
+            return True
+        except Exception:
+            return False

@@ -13,11 +13,27 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-
-
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import tables
+
+from dlux.utils import filters
+from dlux.api import get_client
+
+
+class DeleteConnection(tables.BatchAction):
+    name = "delete"
+    action_present = _("Delete")
+    action_past = _("Deletig connection")
+    data_type_singular = _("Connection")
+    data_type_plural = _("Connections")
+    classes = ('btn-danger', 'btn-terminate')
+
+    def action(self, request, obj_id):
+        client = get_client(request)
+        node_id, node_type = obj_id.split('%')
+        client.connection_manager.delete(node_type, node_id)
+        #api.trove.instance_delete(request, obj_id)
 
 
 class LaunchLink(tables.LinkAction):
@@ -34,4 +50,7 @@ class ConnectionsTable(tables.DataTable):
     class Meta:
         name = "connections"
         verbose_name = _('Connections')
-        table_actions = (LaunchLink,)
+        table_actions = (LaunchLink, DeleteConnection,)
+
+    def get_object_id(self, datum):
+        return filters.keys_as_id(datum, keys=['id', 'type'])

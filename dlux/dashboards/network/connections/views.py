@@ -28,7 +28,8 @@ class IndexView(horizon_tables.DataTableView):
 
     def get_data(self):
         client = get_client(self.request)
-        return client.connection_manager.list()
+        data = client.connection_manager.list()
+        return data
 
 
 class CreateView(horizon_workflows.WorkflowView):

@@ -29,3 +29,11 @@ def get_int_or_uuid(value):
         return value
     except (ValueError, AttributeError):
         return int(value)
+
+
+def keys_as_id(obj, keys=['id'], joiner='%'):
+    if isinstance(obj, dict):
+        data = [obj[k] for k in keys]
+    else:
+        data = [getattr(obj, k) for k in keys]
+    return joiner.join(data)
