@@ -23,8 +23,6 @@ import os
 import sys
 import warnings
 
-from django.utils.translation import ugettext_lazy as _
-
 from dlux import exceptions
 
 warnings.formatwarning = lambda message, category, *args, **kwargs: \

@@ -1,21 +1,33 @@
+# Copyright 2014 Hewlett-Packard Development Company, L.P.
+#
+# Authors: Endre Karlson <endre.karlson@hp.com>
+#          Dave Tucker <dave.j.tucker@hp.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
+# not use this file except in compliance with the License. You may obtain
+# a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+
 import logging
 
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.contrib.auth.views import (login as django_login,
-                                       logout_then_login as django_logout)
-from django.views.decorators.debug import sensitive_post_parameters
+from django.contrib.auth.views import login as django_login
+from django.contrib.auth.views import logout_then_login as django_logout
 from django.utils.functional import curry
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.debug import sensitive_post_parameters
 
 from dlux.auth.forms import Login
 from dlux.auth.user import set_session_from_user
-
-try:
-    from django.utils.http import is_safe_url
-except ImportError:
-    from .utils import is_safe_url
 
 
 LOG = logging.getLogger(__name__)
@@ -25,7 +37,7 @@ LOG = logging.getLogger(__name__)
 @csrf_protect
 @never_cache
 def login(request):
-    """ Logs a user in using the :class:`~openstack_auth.forms.Login` form. """
+    """Logs a user in using the :class:`~openstack_auth.forms.Login` form."""
     # Get our initial region for the form.
     initial = {}
     current_controller = request.session.get('controller_endpoint', None)
