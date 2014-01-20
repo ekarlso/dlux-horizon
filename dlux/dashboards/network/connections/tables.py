@@ -33,7 +33,6 @@ class DeleteConnection(tables.BatchAction):
         client = get_client(request)
         node_id, node_type = obj_id.split('%')
         client.connection_manager.delete(node_type, node_id)
-        #api.trove.instance_delete(request, obj_id)
 
 
 class LaunchLink(tables.LinkAction):
