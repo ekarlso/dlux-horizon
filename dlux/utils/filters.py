@@ -31,7 +31,7 @@ def get_int_or_uuid(value):
         return int(value)
 
 
-def keys_as_id(obj, keys=['id'], joiner='%'):
+def keys_as_id(obj, keys=['id'], joiner='#'):
     if isinstance(obj, dict):
         data = [obj[k] for k in keys]
     else:

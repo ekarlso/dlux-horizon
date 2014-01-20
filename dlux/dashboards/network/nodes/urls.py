@@ -13,7 +13,6 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-
 from django.conf.urls import patterns  # noqa
 from django.conf.urls import url  # noqa
 
@@ -21,5 +20,7 @@ from dlux.dashboards.network.nodes import views
 
 urlpatterns = patterns(
     'dlux.dashboards.network.nodes.views',
-    url(r'^$', views.NodesIndex.as_view(), name='index'),
+    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^(?P<node_type>[^/]+)/(?P<node_id>[^/]+)/$',
+        views.DetailView.as_view(), name='detail')
 )
