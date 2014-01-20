@@ -11,5 +11,5 @@ pytz>=2010h
 # for SECURE_KEY generation
 lockfile>=0.8
 -e git://github.com/openstack/horizon.git#egg=horizon
--e git://github.com/ekarlso/python-odlclient.git#egg=odlclient
+-e git://github.com/ekarlso/python-odlclient.git#egg=python-odlclient
 requests
