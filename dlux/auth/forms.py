@@ -22,7 +22,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from django.views.decorators import sensitive_variables
+from django.views.decorators.debug import sensitive_variables
 
 from dlux.exceptions import AuthException
 
