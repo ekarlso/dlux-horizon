@@ -1,11 +1,28 @@
+# Copyright 2014 Hewlett-Packard Development Company, L.P.
+#
+# Authors: Endre Karlson <endre.karlson@hp.com>
+#          Dave Tucker <dave.j.tucker@hp.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
+# not use this file except in compliance with the License. You may obtain
+# a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+
 import logging
 
-from django import forms
 from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from django import forms
 from django.utils.translation import ugettext_lazy as _
-from django.views.decorators.debug import sensitive_variables
+from django.views.decorators import sensitive_variables
 
 from dlux.exceptions import AuthException
 
@@ -14,20 +31,7 @@ LOG = logging.getLogger(__name__)
 
 
 class Login(AuthenticationForm):
-    """ Form used for logging in a user.
-
-    Handles authentication with Keystone by providing the domain name, username
-    and password. A scoped token is fetched after successful authentication.
-
-    A domain name is required if authenticating with Keystone V3 running
-    multi-domain configuration.
-
-    If the user authenticated has a default project set, the token will be
-    automatically scoped to their default project.
-
-    If the user authenticated has no default project set, the authentication
-    backend will try to scope to the projects returned from the user's assigned
-    projects. The first successful project scoped will be returned.
+    """Form used for logging in a user.
 
     Inherits from the base ``django.contrib.auth.forms.AuthenticationForm``
     class for added security features.
@@ -48,7 +52,8 @@ class Login(AuthenticationForm):
             self.fields.keyOrder = ['username', 'password', 'controller']
         self.fields['controller'].choices = self.get_controller_choices()
         if len(self.fields['controller'].choices) == 1:
-            self.fields['controller'].initial = self.fields['controller'].choices[0][0]
+            initial = self.fields['controller'].choices[0][0]
+            self.fields['controller'].initial = initial
             self.fields['controller'].widget = forms.widgets.HiddenInput()
 
     @staticmethod
@@ -82,4 +87,3 @@ class Login(AuthenticationForm):
             raise forms.ValidationError(exc)
         self.check_for_test_cookie()
         return self.cleaned_data
-

@@ -17,8 +17,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from horizon import tables
 
-from dlux.utils import filters
 from dlux.api import get_client
+from dlux.utils import filters
 
 
 class DeleteConnection(tables.BatchAction):
