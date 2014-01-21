@@ -14,28 +14,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.utils.translation import ugettext_lazy as _
-
-import horizon
-
-
-class ConfigPanels(horizon.PanelGroup):
-    name = _('Manage Configuration')
-    slug = 'configuration'
-    panels = ('layer3',)
+from horizon import workflows as horizon_workflows
+from dlux.dashboards.network.layer3.staticroutes import workflows
 
 
-class NodePanels(horizon.PanelGroup):
-    name = _("Manage Nodes")
-    slug = "node"
-    panels = ('connections', 'nodes',)
-
-
-class Network(horizon.Dashboard):
-    name = _("Network")
-    slug = "network"
-    panels = (NodePanels, ConfigPanels)
-    default_panel = "nodes"
-    supports_tenants = True
-
-horizon.register(Network)
+class CreateStaticRouteView(horizon_workflows.WorkflowView):
+    workflow_class = workflows.CreateStaticRoute
+    template = "network/layer3/staticroute/create.html"
