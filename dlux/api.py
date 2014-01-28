@@ -25,7 +25,7 @@ def get_client(request):
         'JSESSIONID': request.user.jsessionid,
         'JSESSIONIDSSO': request.user.jsessionidsso
     })
-    url = request.user.controller + '/controller/nb/v2'
-    http = odl_client.HTTPClient(url, http=session, debug=settings.DEBUG)
+    http = odl_client.HTTPClient(request.user.controller, http=session,
+                                 debug=settings.DEBUG)
     client = odl_client.Client(http)
     return client
