@@ -18,6 +18,6 @@ from horizon import tabs as horizon_tabs
 from dlux.dashboards.network.layer3 import tabs
 
 
-class IndexView(horizon_tabs.TabView):
+class IndexView(horizon_tabs.TabbedTableView):
     template_name = 'network/layer3/index.html'
     tab_group_class = tabs.NetworksTabs

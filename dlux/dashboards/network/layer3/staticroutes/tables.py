@@ -26,15 +26,11 @@ class CreateStaticRouteLink(tables.LinkAction):
     classes = ("btn-launch", "ajax-modal")
 
 
-class DeleteStaticRoute(tables.BatchAction):
-    name = "delete"
-    action_present = _("Delete")
-    action_past = _("Deletig StaticRoute")
-    data_type_singular = _("StaticRoute")
-    data_type_plural = _("StaticRoutes")
-    classes = ('btn-danger', 'btn-terminate')
+class DeleteStaticRoute(tables.DeleteAction):
+    data_type_singular = 'StaticRoute'
+    data_type_plugar = 'StaticRoutes'
 
-    def action(self, request, obj_id):
+    def delete(self, request, obj_id):
         client = get_client(request)
         client.staticroutes.delete(obj_id)
 

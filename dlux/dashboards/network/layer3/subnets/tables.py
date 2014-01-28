@@ -26,15 +26,11 @@ class CreateSubnetLink(tables.LinkAction):
     classes = ("btn-launch", "ajax-modal")
 
 
-class DeleteSubnet(tables.BatchAction):
-    name = "delete"
-    action_present = _("Delete")
-    action_past = _("Deletig Subnet")
-    data_type_singular = _("Subnet")
-    data_type_plural = _("Subnet")
-    classes = ('btn-danger', 'btn-terminate')
+class DeleteSubnet(tables.DeleteAction):
+    data_type_singular = 'Subnet'
+    data_type_plugar = 'Subnets'
 
-    def action(self, request, obj_id):
+    def delete(self, request, obj_id):
         client = get_client(request)
         client.subnet.delete(obj_id)
 

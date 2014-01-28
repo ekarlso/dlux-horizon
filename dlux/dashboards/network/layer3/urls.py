@@ -25,8 +25,8 @@ from dlux.dashboards.network.layer3.subnets import urls as subnet_urls
 urlpatterns = patterns(
     '',
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^1$', views.IndexView.as_view(), name='index2'),
-    url(r'staticroutes/', include(staticroutes_urls, namespace='staticroutes')),
+    url(r'staticroutes/',
+        include(staticroutes_urls, namespace='staticroutes')),
     url(r'subnets/', include(subnet_urls, namespace='subnets'))
 
 )
