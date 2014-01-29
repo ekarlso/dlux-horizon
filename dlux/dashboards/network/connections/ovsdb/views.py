@@ -13,21 +13,21 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-from django.conf.urls import include  # noqa
-from django.conf.urls import patterns  # noqa
-from django.conf.urls import url  # noqa
+from django.http import HttpResponse
+from django.views import generic
+
+from dlux.api import get_client
+
+import simplejson as json
 
 
-from dlux.dashboards.network.connections import views
-from dlux.dashboards.network.connections.ovsdb import urls as ovsdb_urls
-
-
-urlpatterns = patterns(
-    '',
-    url(r'^index$', views.IndexView.as_view(), name='index'),
-    url(r'^create$', views.CreateView.as_view(), name='create'),
-    url(r'^(?P<node_type>[^/]+)/(?P<ndoe_id>[^/]+)/detail$',
-        views.DetailView.as_view(), name='detail'),
-    url(r'^(?P<node_type>[^/]+)/(?P<node_id>[^/]+)/ovsdb/',
-        include(ovsdb_urls, namespace='ovsdb'))
-)
+class RowsView(generic.View):
+    def get(self, request, node_type, node_id, table, row=None):
+        client = get_client(request)
+        #ipdb.set_trace()
+        if row is not None:
+            data = client.ovsdb.get(node_type, node_id, table, row)
+        else:
+            data = client.ovsdb.list(node_type, node_id, table)
+        return HttpResponse(
+            json.dumps(data), content_type='application/json')

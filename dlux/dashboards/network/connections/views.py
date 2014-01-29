@@ -14,6 +14,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+
 from horizon import tables as horizon_tables
 from horizon import tabs as horizon_tabs
 from horizon import workflows as horizon_workflows
@@ -42,4 +43,3 @@ class CreateView(horizon_workflows.WorkflowView):
 class DetailView(horizon_tabs.TabView):
     tab_group_class = tabs.DetailTabs
     template_name = 'network/connections/detail.html'
-

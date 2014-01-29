@@ -1,25 +1,28 @@
 <div class="row-fluid">
-	<div class="row" ng-controller="OvsdbController">
-		<div class="span2">
+	<div class="row">
+		<div class="span3">
+			<h3>Tables</h3>
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active" id="open_vswitch"><a href="#">Open vSwitch</a></li>
-				<li><a href="#">Bridge</a></li>
-				<li><a href="#">Port</a></li>
-				<li><a href="#">Interface</a></li>
-				<li><a href="#">Flow</a></li>
-				<li><a href="#">Queue</a></li>
-				<li><a href="#">Mirror</a></li>
-				<li><a href="#">Controller</a></li>
-				<li><a href="#">Manager</a></li>
-				<li><a href="#">NetFlow</a></li>
-				<li><a href="#">SSL</a></li>
-				<li><a href="#">sFlow</a></li>
-				<li><a href="#">IPFIX</a></li>
-				<li><a href="#">Flow Sample Collector Set</a></li>
+				<li ng-class="{ active: $state.current.name ==  'open_vswitch' }"><a ui-sref="table.rows({name: 'open_vswitch'})">Open vSwitch</a></li>
+				<li ng-class="{ active: $state.current.name ==  'bridge' }"><a ui-sref="table.bridge">Bridge</a></li>
+				<li ng-class="{ active: $state.current.name ==  'port' }"><a ui-sref="table.port">Port</a></li>
+				<li ng-class="{ active: $state.current.name ==  'interface' }"><a ui-sref="table.interface">Interface</a></li>
+				<li ng-class="{ active: $state.current.name ==  'flow' }"><a ui-sref="table.flow" >Flow</a></li>
+				<li ng-class="{ active: $state.current.name ==  'queue' }"><a ui-sref="table.queue">Queue</a></li>
+				<li ng-class="{ active: $state.current.name ==  'mirror' }"><a ui-sref="table.mirror">Mirror</a></li>
+				<li ng-class="{ active: $state.current.name ==  'controller' }"><a ui-sref="table.controller">Controller</a></li>
+				<li ng-class="{ active: $state.current.name ==  'manager' }"><a ui-sref="table.manager">Manager</a></li>
+				<li ng-class="{ active: $state.current.name == 'netflow' }"><a ui-sref="table.netflows">NetFlow</a></li>
+				<li ng-class="{ active: $state.current.name == 'ssl' }"><a ui-sref="table.ssl">SSL</a></li>
+				<li ng-class="{ active: $state.current.name == 'sflow' }"><a ui-sref="table.sflow">sFlow</a></li>
+				<li ng-class="{ active: $state.current.name == 'ipfix' }"><a ui-sref="table.ipfix">IPFIX</a></li>
+				<li ng-class="{ active: $state.current.name ==  'flow_set' }"><a ui-sref="table.flow_set">Flow Sample Collector Set</a></li>
 			</ul>
 		</div>
-		<div id="table" class="span10">
-			<h1>{$ greeting $}</h1>
+
+		<!-- Root UI View -->
+		<div id="table" class="span10" ui-view>
+			Click on table to view.
 		</div>
   </div>
 </div>
