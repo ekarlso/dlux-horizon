@@ -1,6 +1,6 @@
 <div class="row-fluid">
-	<div class="row">
-		<div class="span3">
+	<div class="row" ng-controller="ovsdbController">
+		<div class="span2">
 			<ul class="nav nav-pills nav-stacked">
 				<li class="active" id="open_vswitch"><a href="#">Open vSwitch</a></li>
 				<li><a href="#">Bridge</a></li>
@@ -18,8 +18,8 @@
 				<li><a href="#">Flow Sample Collector Set</li>
 			</ul>
 		</div>
-		<div id="table" class="span9">
-
+		<div id="table" class="span10">
+			{{ greeting }}
 		</div>
   </div>
 </div>
