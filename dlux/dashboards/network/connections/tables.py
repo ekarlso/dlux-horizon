@@ -13,12 +13,22 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+from django.core import urlresolvers
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import tables
 
 from dlux.utils.filters import keys_as_id
 from dlux.api import get_client
+
+
+def get_connection_link(datum):
+    view = "horizon:network:connections:detail"
+    if datum.id:
+        link = urlresolvers.reverse(view, args=(datum.type, datum.id, ))
+    else:
+        link = None
+    return link
 
 
 class DeleteConnection(tables.BatchAction):
@@ -43,8 +53,9 @@ class LaunchLink(tables.LinkAction):
 
 
 class ConnectionsTable(tables.DataTable):
-    id = tables.Column('id', verbose_name='Identifier')
-    type = tables.Column('type', verbose_name='Type')
+    id = tables.Column(
+        'id', verbose_name=_('Identifier'), link=get_connection_link)
+    type = tables.Column('type', verbose_name=_('Type'))
 
     class Meta:
         name = "connections"
@@ -53,3 +64,4 @@ class ConnectionsTable(tables.DataTable):
 
     def get_object_id(self, datum):
         return keys_as_id(datum, keys=['id', 'type'])
+

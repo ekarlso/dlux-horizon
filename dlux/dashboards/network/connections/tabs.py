@@ -13,15 +13,25 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-from django.conf.urls import patterns  # noqa
-from django.conf.urls import url  # noqa
+from django.utils.translation import ugettext_lazy as _
+from django.shortcuts import render_to_response
 
-from dlux.dashboards.network.connections import views
+from horizon import tabs
 
-urlpatterns = patterns(
-    'dlux.dashboards.network.connections.views',
-    url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^create$', views.CreateView.as_view(), name='create'),
-    url(r'^(?P<conn_type>[^/]+)/(?P<conn_id>[^/]+)/$',
-        views.DetailView.as_view(), name='detail')
-)
+from dlux.api import get_client
+from dlux.dashboards.network.nodes import tables
+
+
+class OvsdbTab(tabs.Tab):
+    name = _("OVSDB")
+    slug = "ovsdb"
+    template_name = "network/connections/ovsdb.html"
+
+    def get_context_data(self, request):
+        return {}
+
+
+class DetailTabs(tabs.TabGroup):
+    slug = "access_security_tabs"
+    tabs = (OvsdbTab,)
+    sticky = True

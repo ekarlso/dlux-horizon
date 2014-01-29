@@ -1,0 +1,16 @@
+<div class="accordion" id="tableAccordion">
+  {% for heading in headings %}
+	<div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#tableAccordion" href="#{{ heading }}">
+        {{ heading }}
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        Table goes here...
+      </div>
+    </div>
+  </div>
+	{% endfor %}
+</div>
