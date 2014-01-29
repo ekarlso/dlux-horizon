@@ -95,10 +95,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_HOST_PASSWORD = 'top-secret!'
 
 DEFAULT_CONTROLLER = ("http://localhost:8080", "localhost")
-# For multiple regions uncomment this configuration, and add (endpoint, title).
-AVAILABLE_CONTROLLERS = [
-    ("http://localhost:8080", "localhost")
-]
+# For multiple controllers uncomment this configuration, and add (endpoint, title).
+#AVAILABLE_CONTROLLERS = [
+#    ("http://localhost:8080", "Localhost")
+#]
+
 
 # The timezone of the server. This should correspond with the timezone
 # of your entire OpenStack installation, and hopefully be in UTC.
