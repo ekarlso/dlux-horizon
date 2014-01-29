@@ -21,6 +21,7 @@ from horizon import workflows as horizon_workflows
 from dlux.api import get_client
 from dlux.dashboards.network.connections import tables
 from dlux.dashboards.network.connections import workflows
+from dlux.dashboards.network.connections import tabs
 
 
 class IndexView(horizon_tables.DataTableView):
@@ -35,4 +36,10 @@ class IndexView(horizon_tables.DataTableView):
 
 class CreateView(horizon_workflows.WorkflowView):
     workflow_class = workflows.CreateConnection
-    template = "project/conenctions/create.html"
+    template = "network/connections/create.html"
+
+
+class DetailView(horizon_tabs.TabView):
+    tab_group_class = tabs.DetailTabs
+    template_name = 'network/connections/detail.html'
+
