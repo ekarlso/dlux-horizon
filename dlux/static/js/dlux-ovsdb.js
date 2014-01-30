@@ -16,14 +16,15 @@ horizonApp.config(function($stateProvider, $urlRouterProvider){
         template: 'Click on table to the left to view.'
     })
 
-    $stateProvider.state('table.bridge', {
-        url: '/bridge',
+    $stateProvider.state('table.rows', {
+        url: '/{name}',
         views: {
             '@': {
-                templateUrl: '/static/partials/ovsdb/bridge_rows.html',
-                controller: function($scope, $http) {
-                    $http.get('ovsdb/bridge').success(function(data) {
-                        $scope.rows = data.rows
+                templateUrl: '/static/partials/ovsdb/rows.html',
+                controller: function($scope, $state, $http) {
+                    $http.get('ovsdb/' + $scope.$stateParams.name).success(function(data) {
+                        $scope.headers = data.table.headers
+                        $scope.rows = data.table.rows
                     });
                 }
             }
