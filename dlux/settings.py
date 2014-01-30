@@ -134,7 +134,7 @@ INSTALLED_APPS = [
     'dlux.dashboards.network.dashboard',
     'dlux.auth',
     #'openstack_auth',
-    'django_extensions'
+    #'django_extensions'
 ]
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'

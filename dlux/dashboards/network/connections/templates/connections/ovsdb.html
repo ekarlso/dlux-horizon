@@ -3,25 +3,53 @@
 		<div class="span3">
 			<h3>Tables</h3>
 			<ul class="nav nav-pills nav-stacked">
-				<li ng-class="{ active: $state.current.name ==  'open_vswitch' }"><a ui-sref="table.rows({name: 'open_vswitch'})">Open vSwitch</a></li>
-				<li ng-class="{ active: $state.current.name ==  'bridge' }"><a ui-sref="table.bridge">Bridge</a></li>
-				<li ng-class="{ active: $state.current.name ==  'port' }"><a ui-sref="table.port">Port</a></li>
-				<li ng-class="{ active: $state.current.name ==  'interface' }"><a ui-sref="table.interface">Interface</a></li>
-				<li ng-class="{ active: $state.current.name ==  'flow' }"><a ui-sref="table.flow" >Flow</a></li>
-				<li ng-class="{ active: $state.current.name ==  'queue' }"><a ui-sref="table.queue">Queue</a></li>
-				<li ng-class="{ active: $state.current.name ==  'mirror' }"><a ui-sref="table.mirror">Mirror</a></li>
-				<li ng-class="{ active: $state.current.name ==  'controller' }"><a ui-sref="table.controller">Controller</a></li>
-				<li ng-class="{ active: $state.current.name ==  'manager' }"><a ui-sref="table.manager">Manager</a></li>
-				<li ng-class="{ active: $state.current.name == 'netflow' }"><a ui-sref="table.netflows">NetFlow</a></li>
-				<li ng-class="{ active: $state.current.name == 'ssl' }"><a ui-sref="table.ssl">SSL</a></li>
-				<li ng-class="{ active: $state.current.name == 'sflow' }"><a ui-sref="table.sflow">sFlow</a></li>
-				<li ng-class="{ active: $state.current.name == 'ipfix' }"><a ui-sref="table.ipfix">IPFIX</a></li>
-				<li ng-class="{ active: $state.current.name ==  'flow_set' }"><a ui-sref="table.flow_set">Flow Sample Collector Set</a></li>
+				<li ng-class="{ active: $stateParams.name == 'open_vswitch' }">
+					<a ui-sref="table.rows({name: 'open_vswitch', tit:'Open vSwitch'})">Open vSwitch</a>
+				</li>
+				<li ng-class="{ active: $stateParams.name == 'bridge' }">
+					<a ui-sref="table.rows({name: 'bridge', title:'Bridge'})">Bridge</a>
+				</li>
+				<li ng-class="{ active: $stateParams.name == 'port' }">
+					<a ui-sref="table.rows({name: 'port', title:'Port'})">Port</a>
+				</li>
+				<li ng-class="{ active: $stateParams.name == 'interface' }">
+					<a ui-sref="table.rows({name: 'interface', title:'Interface'})">Interface</a>
+				</li>
+				<li ng-class="{ active: $stateParams.name == 'flow' }">
+					<a ui-sref="table.rows({name: 'flow_table', title:'Flow'})" >Flow</a>
+				</li>
+				<li ng-class="{ active: $stateParams.name == 'queue' }">
+					<a ui-sref="table.rows({name: 'queue', title:'Queue'})">Queue</a>
+				</li>
+				<li ng-class="{ active: $stateParams.name == 'mirror' }">
+					<a ui-sref="table.rows({name: 'mirror', title:'Mirror'})">Mirror</a>
+			</li>
+				<li ng-class="{ active: $stateParams.name == 'controller' }">
+					<a ui-sref="table.rows({name: 'controller', title:'Controller'})">Controller</a>
+				</li>
+				<li ng-class="{ active: $stateParams.name == 'manager' }">
+					<a ui-sref="table.rows({name: 'manager', title:'Manager'})">Manager</a>
+				</li>
+				<li ng-class="{ active: $stateParams.name == 'netflow' }">
+					<a ui-sref="table.rows({name: 'netflow', title:'Netflow'})">NetFlow</a>
+				</li>
+				<li ng-class="{ active: $stateParams.name == 'ssl' }">
+					<a ui-sref="table.rows({name: 'ssl', title:'SSL'})">SSL</a>
+				</li>
+				<li ng-class="{ active: $stateParams.name == 'sflow' }">
+					<a ui-sref="table.rows({name: 'sflow', title:'sFlow'})">sFlow</a>
+				</li>
+				<li ng-class="{ active: $stateParams.name == 'ipfix' }">
+					<a ui-sref="table.rows({name: 'ipfix', title:'IPFIX'})">IPFIX</a>
+				</li>
+				<li ng-class="{ active: $stateParams.name == 'flow_sample_collector_set' }">
+					<a ui-sref="table.rows({name: 'flow_sample_collector_set', title:'Flow Sample Collector Set'})">Flow Sample Collector Set</a>
+				</li>
 			</ul>
 		</div>
 
 		<!-- Root UI View -->
-		<div id="table" class="span10" ui-view>
+		<div id="table" class="span10" style="overflow:auto" ui-view>
 			Click on table to view.
 		</div>
   </div>
