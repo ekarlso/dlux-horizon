@@ -1,6 +1,6 @@
 # Copyright 2014 Hewlett-Packard Development Company, L.P.
 #
-# Author: Endre Karlson <endre.karlson@hp.com>
+# Author: Dave Tucker <dave.j.tucker@hp.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -14,33 +14,16 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from django.core import urlresolvers
 from django.utils.translation import ugettext_lazy as _
+from horizon import tables
 
-import horizon
+class NeutronNetworkTable(tables.DataTable):
+    id = tables.Column('id', verbose_name=_('Identifier'))
+    name = tables.Column('name', verbose_name=_('Name'))
 
-
-class ConfigPanels(horizon.PanelGroup):
-    name = _('Manage Configuration')
-    slug = 'configuration'
-    panels = ('layer3',)
-
-
-class NodePanels(horizon.PanelGroup):
-    name = _("Manage Nodes")
-    slug = "node"
-    panels = ('connections', 'nodes',)
+    class Meta:
+        name = 'networks'
+        verbose_name = _('Networks')
 
 
-class NetworkPanels(horizon.PanelGroup):
-    name = _("OpenStack Networks")
-    slug = 'openstack'
-    panels = ('neutron',)
-
-class Network(horizon.Dashboard):
-    name = _("Network")
-    slug = "network"
-    panels = (NodePanels, ConfigPanels, NetworkPanels)
-    default_panel = "nodes"
-    supports_tenants = False
-
-horizon.register(Network)
