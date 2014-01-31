@@ -20,6 +20,7 @@ BRIDGE = {
 
 OVS = {
     "headers": {
+        "uuid": "UUID",
         "bridges": "Bridges",
         "ssl": "SSL",
         "next_cfg": "Next Config",
@@ -36,6 +37,7 @@ OVS = {
 
 PORT = {
     "headers": {
+        "uuid": "UUID",
         "name": "Name",
         "interfaces": "Interfaces",
         "vlan_mode": "VLAN Mode",
@@ -56,6 +58,7 @@ PORT = {
 
 INTERFACE = {
     "headers": {
+        "uuid": "UUID",
         "name": "Name",
         "ifindex": "ifindex",
         "mac_in_use": "MAC in Use?",
@@ -89,6 +92,7 @@ INTERFACE = {
 
 FLOW_TABLE = {
     "headers": {
+        "uuid": "UUID",
         "name": "Name",
         "flow_limit": "Flow Limit",
         "overflow_policy": "Overflow Policy",
@@ -98,6 +102,7 @@ FLOW_TABLE = {
 
 QOS = {
     "headers": {
+        "uuid": "UUID",
         "type": "Type",
         "queues": "Queues",
         "other_config ": "Other Config",
@@ -113,6 +118,7 @@ QUEUE = {
 
 MIRROR = {
     "headers": {
+        "uuid": "UUID",
         "name": "Name",
         "select_all": "Select All",
         "select_dst_port ": "Select Source Port",
@@ -126,6 +132,7 @@ MIRROR = {
 
 CONTROLLER = {
     "headers": {
+        "uuid": "UUID",
         "target ": "Target",
         "connection_mode": "Connection Mode",
         "max_backoff": "Max. Backoff",
@@ -146,6 +153,7 @@ CONTROLLER = {
 
 MANAGER = {
     "headers": {
+        "uuid": "UUID",
         "target": "Target",
         "connection_mode": "Connection Mode",
         "max_backoff": "Max. Backoff",
@@ -158,6 +166,7 @@ MANAGER = {
 
 NETFLOW = {
     "headers": {
+        "uuid": "UUID",
         "targets": "Targets",
         "engine_id": "Engine ID",
         "engine_type": "Engine Type",
@@ -168,6 +177,7 @@ NETFLOW = {
 
 SSL = {
     "headers": {
+        "uuid": "UUID",
         "private_key": "Private Key",
         "certificate": "Certificate",
         "ca_cert": "CA Cert",
@@ -177,6 +187,7 @@ SSL = {
 
 SFLOW = {
     "headers": {
+        "uuid": "UUID",
         "agent": "Agent",
         "header": "Header",
         "polling": "Polling",
@@ -187,6 +198,7 @@ SFLOW = {
 
 IPFIX = {
     "headers": {
+        "uuid": "UUID",
         "targets": "Targets",
         "sampling": "Sampling",
         "obs_domain_id": "Obs Domain ID",
@@ -198,6 +210,7 @@ IPFIX = {
 
 FLOW_SET = {
     "headers": {
+        "uuid": "UUID",
         "id": "ID",
         "bridge": "Bridge",
         "ipfix": "IPFIX",
