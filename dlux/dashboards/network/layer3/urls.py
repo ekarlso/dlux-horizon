@@ -13,29 +13,20 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+from django.conf.urls import include  # noqa
+from django.conf.urls import patterns  # noqa
+from django.conf.urls import url  # noqa
 
-from django.utils.translation import ugettext_lazy as _
+from dlux.dashboards.network.layer3 import views
+from dlux.dashboards.network.layer3.staticroutes import urls \
+    as staticroutes_urls
+from dlux.dashboards.network.layer3.subnets import urls as subnet_urls
 
-import horizon
+urlpatterns = patterns(
+    '',
+    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'staticroutes/',
+        include(staticroutes_urls, namespace='staticroutes')),
+    url(r'subnets/', include(subnet_urls, namespace='subnets'))
 
-
-class ConfigPanels(horizon.PanelGroup):
-    name = _('Manage Configuration')
-    slug = 'configuration'
-    panels = ('layer3',)
-
-
-class NodePanels(horizon.PanelGroup):
-    name = _("Manage Nodes")
-    slug = "node"
-    panels = ('connections', 'nodes',)
-
-
-class Network(horizon.Dashboard):
-    name = _("Network")
-    slug = "network"
-    panels = (NodePanels, ConfigPanels)
-    default_panel = "nodes"
-    supports_tenants = True
-
-horizon.register(Network)
+)

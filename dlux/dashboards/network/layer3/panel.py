@@ -13,29 +13,15 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-
 from django.utils.translation import ugettext_lazy as _
 
 import horizon
 
-
-class ConfigPanels(horizon.PanelGroup):
-    name = _('Manage Configuration')
-    slug = 'configuration'
-    panels = ('layer3',)
+from dlux.dashboards.network import dashboard
 
 
-class NodePanels(horizon.PanelGroup):
-    name = _("Manage Nodes")
-    slug = "node"
-    panels = ('connections', 'nodes',)
+class Layer3(horizon.Panel):
+    name = _("Layer 3")
+    slug = 'layer3'
 
-
-class Network(horizon.Dashboard):
-    name = _("Network")
-    slug = "network"
-    panels = (NodePanels, ConfigPanels)
-    default_panel = "nodes"
-    supports_tenants = True
-
-horizon.register(Network)
+dashboard.Network.register(Layer3)
