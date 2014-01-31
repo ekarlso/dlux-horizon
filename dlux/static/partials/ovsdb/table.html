@@ -1,0 +1,14 @@
+<h2>{$ table_defs[$stateParams.name].title $}</h2>
+
+<table class="table table-striped table-bordered" ng-style="{'max-width':'none'}">
+	<thead>
+		<tr>
+			<th ng-repeat="header in table_defs[$stateParams.name].headers" >{$ header $}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="row in table_data.rows">
+			<td ng-repeat="(k,v) in table_defs[$stateParams.name].headers">{$ row[k] $}</td>
+		</tr>
+	</tbody>
+</table>

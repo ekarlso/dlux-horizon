@@ -19,10 +19,18 @@ from django.conf.urls import url  # noqa
 
 from dlux.dashboards.network.connections.ovsdb import views
 
-urlpatterns = patterns(
+
+# Node sub urls
+node_patterns = patterns(
     '',
-    url(r'(?P<table>[^/]+)/$', views.RowsView.as_view(),
+    url(r'(?P<table>[^/]+)$', views.RowsView.as_view(),
         name='list'),
     url(r'(?P<table>[^/]+)/(?P<row>[^/]+)$', views.RowsView.as_view(),
         name='get'),
+    url(r'^$', views.DetailView.as_view(), name='detail')
+)
+
+url_patterns = patterns(
+    '',
+    url(r'tables', views.TableDefsView.as_view(), name='defs')
 )

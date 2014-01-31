@@ -26,8 +26,10 @@ urlpatterns = patterns(
     '',
     url(r'^index$', views.IndexView.as_view(), name='index'),
     url(r'^create$', views.CreateView.as_view(), name='create'),
-    url(r'^(?P<node_type>[^/]+)/(?P<ndoe_id>[^/]+)/detail$',
+    url(r'(?P<node_type>[^/]+)/(?P<node_id>[^/]+)/detail$',
         views.DetailView.as_view(), name='detail'),
+
+    url(r'^ovsdb/', include(ovsdb_urls.url_patterns, namespace='ovsdb')),
     url(r'^(?P<node_type>[^/]+)/(?P<node_id>[^/]+)/ovsdb/',
-        include(ovsdb_urls, namespace='ovsdb'))
+        include(ovsdb_urls.node_patterns, namespace='ovsdb_tables'))
 )
