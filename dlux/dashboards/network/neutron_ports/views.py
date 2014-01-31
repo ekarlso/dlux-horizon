@@ -14,16 +14,17 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.core import urlresolvers
-from django.utils.translation import ugettext_lazy as _
-from horizon import tables
+from horizon import tables as horizon_tables
+from horizon import tabs as horizon_tabs
 
-class NeutronNetworkTable(tables.DataTable):
-    id = tables.Column('id', verbose_name=_('Identifier'))
-    name = tables.Column('name', verbose_name=_('Name'))
-
-    class Meta:
-        name = 'networks'
-        verbose_name = _('Networks')
+from dlux.api import get_client
+from dlux.dashboards.network.neutron_ports import tables
 
 
+class IndexView(horizon_tables.DataTableView):
+    template_name = "network/neutron_ports/index.html"
+    table_class = tables.NeutronPortsTable
+
+    def get_data(self):
+        client = get_client(self.request)
+        return client.neutron.ports.list()

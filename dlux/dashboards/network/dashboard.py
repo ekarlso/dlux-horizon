@@ -32,9 +32,9 @@ class NodePanels(horizon.PanelGroup):
 
 
 class NetworkPanels(horizon.PanelGroup):
-    name = _("OpenStack Networks")
+    name = _("OpenStack Networking")
     slug = 'openstack'
-    panels = ('neutron',)
+    panels = ('neutron_networks', 'neutron_subnets', 'neutron_ports')
 
 class Network(horizon.Dashboard):
     name = _("Network")
