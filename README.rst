@@ -56,7 +56,7 @@ Begin by cloning the horizon and dlux repositories:
 Go into ``dlux-horizon`` and install a virtual environment for your setup::
 
     cd dlux-horizon
-    virtualvenv .venv
+    virtualenv .venv
     source .venv/bin/activate
     pip install -r requirements.txt -r test-requirements.txt
 
