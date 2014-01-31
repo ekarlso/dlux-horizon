@@ -31,11 +31,16 @@ class NodePanels(horizon.PanelGroup):
     panels = ('connections', 'nodes',)
 
 
+class NetworkPanels(horizon.PanelGroup):
+    name = _("OpenStack Networking")
+    slug = 'openstack'
+    panels = ('neutron_networks', 'neutron_subnets', 'neutron_ports')
+
 class Network(horizon.Dashboard):
     name = _("Network")
     slug = "network"
-    panels = (NodePanels, ConfigPanels)
+    panels = (NodePanels, ConfigPanels, NetworkPanels)
     default_panel = "nodes"
-    supports_tenants = True
+    supports_tenants = False
 
 horizon.register(Network)
