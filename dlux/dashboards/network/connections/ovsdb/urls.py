@@ -13,23 +13,24 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-from django.conf.urls import include  # noqa
 from django.conf.urls import patterns  # noqa
 from django.conf.urls import url  # noqa
 
 
-from dlux.dashboards.network.connections import views
-from dlux.dashboards.network.connections.ovsdb import urls as ovsdb_urls
+from dlux.dashboards.network.connections.ovsdb import views
 
 
-urlpatterns = patterns(
+# Node sub urls
+node_patterns = patterns(
     '',
-    url(r'^index$', views.IndexView.as_view(), name='index'),
-    url(r'^create$', views.CreateView.as_view(), name='create'),
-    url(r'(?P<node_type>[^/]+)/(?P<node_id>[^/]+)/detail$',
-        views.DetailView.as_view(), name='detail'),
+    url(r'(?P<table>[^/]+)$', views.RowsView.as_view(),
+        name='list'),
+    url(r'(?P<table>[^/]+)/(?P<row>[^/]+)$', views.RowsView.as_view(),
+        name='get'),
+    url(r'^$', views.DetailView.as_view(), name='detail')
+)
 
-    url(r'^ovsdb/', include(ovsdb_urls.url_patterns, namespace='ovsdb')),
-    url(r'^(?P<node_type>[^/]+)/(?P<node_id>[^/]+)/ovsdb/',
-        include(ovsdb_urls.node_patterns, namespace='ovsdb_tables'))
+url_patterns = patterns(
+    '',
+    url(r'tables', views.TableDefsView.as_view(), name='defs')
 )

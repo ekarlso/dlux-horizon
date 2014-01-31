@@ -19,19 +19,28 @@ from django.shortcuts import render_to_response
 from horizon import tabs
 
 from dlux.api import get_client
-from dlux.dashboards.network.nodes import tables
+from dlux.dashboards.network.connections.ovsdb import tables as ovsdb_tables
 
 
-class OvsdbTab(tabs.Tab):
+class OVSDBTab(tabs.Tab):
     name = _("OVSDB")
     slug = "ovsdb"
-    template_name = "network/connections/ovsdb.html"
+    template_name = "network/connections/detail_ovsdb.html"
+
+    def get_context_data(self, request):
+        return {'table': ovsdb_tables.TABLES}
+
+
+class OverviewTab(tabs.Tab):
+    name = _("Overview")
+    slug = "overview"
+    template_name = "network/connections/detail_overview.html"
 
     def get_context_data(self, request):
         return {}
 
 
 class DetailTabs(tabs.TabGroup):
-    slug = "access_security_tabs"
-    tabs = (OvsdbTab,)
+    slug = "detail_tabs"
+    tabs = (OverviewTab, OVSDBTab)
     sticky = True
