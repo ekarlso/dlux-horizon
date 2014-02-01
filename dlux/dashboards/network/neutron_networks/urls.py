@@ -20,6 +20,8 @@ from django.conf.urls import url  # noqa
 from dlux.dashboards.network.neutron_networks import views
 
 urlpatterns = patterns(
-    'dlux.dashboards.network.neutron_networks.views',
+    '',
     url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'(?P<network_id>[^/]+)/detail$',
+        views.DetailView.as_view(), name='detail'),
 )

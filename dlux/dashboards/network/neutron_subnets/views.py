@@ -15,10 +15,11 @@
 # under the License.
 
 from horizon import tables as horizon_tables
-from horizon import tabs as horizon_tabs
+from horizon import tabs as tabs
 
 from dlux.api import get_client
 from dlux.dashboards.network.neutron_subnets import tables
+import dlux.dashboards.network.neutron_subnets.tabs as subnet_tabs
 
 
 class IndexView(horizon_tables.DataTableView):
@@ -28,3 +29,7 @@ class IndexView(horizon_tables.DataTableView):
     def get_data(self):
         client = get_client(self.request)
         return client.neutron.subnets.list()
+
+class DetailView(tabs.TabView):
+    tab_group_class = subnet_tabs.SubnetDetailTabs
+    template_name = 'network/neutron_subnets/detail.html'
