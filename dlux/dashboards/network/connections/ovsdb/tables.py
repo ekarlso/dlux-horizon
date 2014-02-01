@@ -33,7 +33,7 @@ OVS = {
         "manager_options": "Manager Options",
         "other_config": "Other Config",
         "external_ids": "External IDs"},
-    "title": "OpenVSwitch"}
+    "title": "Open vSwitch"}
 
 PORT = {
     "headers": {
@@ -107,14 +107,14 @@ QOS = {
         "queues": "Queues",
         "other_config ": "Other Config",
         "external_ids ": "External IDs"},
-    "title": "QOS"}
+    "title": "QoS"}
 
 QUEUE = {
     "headers": {
         "dscp": "DSCP",
         "other_config": "Other Config",
         "external_ids": "External IDs"},
-    "title": "Qeueue"}
+    "title": "Queue"}
 
 MIRROR = {
     "headers": {
@@ -206,7 +206,7 @@ IPFIX = {
         "cache_active_timeout": "Cache Active Timeout",
         "cache_max_flows": "Cache Max Flows",
         "external_ids": "External IDs"},
-    "title": "IP Fix"}
+    "title": "IPFIX"}
 
 FLOW_SET = {
     "headers": {
@@ -215,7 +215,7 @@ FLOW_SET = {
         "bridge": "Bridge",
         "ipfix": "IPFIX",
         "external_ids": "External IDs"},
-    "title": "Flow Set"}
+    "title": "Flow Sample Collector Set"}
 
 TABLES = {"open_vswitch": OVS,
           "bridge": BRIDGE,

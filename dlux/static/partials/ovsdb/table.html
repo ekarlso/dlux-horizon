@@ -1,4 +1,4 @@
-<h2>{$ $stateParams.name $} rows</h2>
+<h2>{$ table_defs[$stateParams.name].title $} rows</h2>
 <br/>
 
 <div ng-show="table_data.rows == null"class="alert">
@@ -8,12 +8,12 @@
 
 <div class="accordion" id="tableAccordion">
 	<div class="accordion-group" ng-repeat="row in table_data.rows track by $index">
-    <div class="accordion-heading">
-      <a ng-if="row.name != ''" class="accordion-toggle" data-toggle="collapse" data-parent="#tableAccordion" href="#{$ $index $}">
-        {$ row.name $}
-      </a>
-      <a ng-if ="row.name == null" class="accordion-toggle" data-toggle="collapse" data-parent="#tableAccordion" href="#{$ $index $}">
+    <div class="accordion-heading" ng-switch='row.name'>
+      <a ng-switch-when="" class="accordion-toggle" data-toggle="collapse" data-parent="#tableAccordion" href="#{$ $index $}">
         {$ row.uuid $}
+      </a>
+      <a ng-switch-default class="accordion-toggle" data-toggle="collapse" data-parent="#tableAccordion" href="#{$ $index $}">
+        {$ row.name $} ({$ row.uuid $})
       </a>
     </div>
     <div id="{$ $index $}" class="accordion-body collapse">
