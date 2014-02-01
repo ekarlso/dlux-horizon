@@ -10,9 +10,9 @@
   {% include "network/neutron_networks/_detail_overview.html" %}
   <br/>
   <div id="subnets">
-    {{ subnet_table.render }}
+    {{ neutron_subnets_table.render }}
   </div>
   <div id="ports">
-    {{ port_table.render }}
+    {{ neutron_ports_table.render }}
   </div>
 {% endblock %}

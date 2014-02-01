@@ -22,4 +22,6 @@ from dlux.dashboards.network.neutron_ports import views
 urlpatterns = patterns(
     'dlux.dashboards.network.neutron_ports.views',
     url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'(?P<port_id>[^/]+)/detail$',
+        views.DetailView.as_view(), name='detail'),
 )
