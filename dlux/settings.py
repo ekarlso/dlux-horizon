@@ -109,7 +109,7 @@ STATICFILES_FINDERS = (
 )
 
 COMPRESS_PRECOMPILERS = (
-    ('text/less', ('lesscpy {infile}')),
+    ('text/less', ('lessc {infile}')),
 )
 
 COMPRESS_CSS_FILTERS = (
