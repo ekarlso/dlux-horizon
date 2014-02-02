@@ -99,7 +99,7 @@ class RowsView(generic.View):
         else:
             result = client.ovsdb.list(node_type, node_id, table)
 
-        tmp = table_defs.TABLES.get(table)
+        tmp = table_defs.TABLES.get(table).copy()
         if result["rows"] is not None:
             rows = clean(result["rows"])
             tmp["rows"] = rows
