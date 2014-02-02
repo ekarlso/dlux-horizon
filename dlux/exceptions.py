@@ -15,7 +15,11 @@
 # under the License.
 
 
-class AuthException(Exception):
+class AuthError(Exception):
+    pass
+
+
+class BackendError(Exception):
     pass
 
 

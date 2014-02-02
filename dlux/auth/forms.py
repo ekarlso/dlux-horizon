@@ -24,7 +24,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.debug import sensitive_variables
 
-from dlux.exceptions import AuthException
+from dlux import exceptions
 
 
 LOG = logging.getLogger(__name__)
@@ -79,11 +79,14 @@ class Login(AuthenticationForm):
             msg = 'Login successful for user "%(username)s".' % \
                 {'username': username}
             LOG.info(msg)
-        except AuthException as exc:
+        except exceptions.AuthError as exc:
             msg = 'Login failed for user "%(username)s".' % \
                 {'username': username}
             LOG.warning(msg)
             self.request.session.flush()
             raise forms.ValidationError(exc)
+        except exceptions.BackendError as exc:
+            raise forms.ValidationError(exc)
+
         self.check_for_test_cookie()
         return self.cleaned_data

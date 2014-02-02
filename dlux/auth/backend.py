@@ -17,6 +17,7 @@
 
 import logging
 import requests
+from requests import exceptions as r_exceptions
 
 from django.conf import settings
 
@@ -46,11 +47,14 @@ class ControllerBackend(object):
                      controller_url=None):
 
         url = controller_url + settings.AUTH_PATH
-        response = requests.get(url, auth=(username, password))
+        try:
+            response = requests.get(url, auth=(username, password))
+        except r_exceptions.ConnectionError as e:
+            raise exceptions.BackendError('Backend unavailable')
 
         if response.status_code == 401:
             LOG.warning('Authentication failure...')
-            raise exceptions.AuthException('Invalid username or password. '
+            raise exceptions.AuthError('Invalid username or password. '
                                            'Please check your credentials '
                                            'and try again.')
 
