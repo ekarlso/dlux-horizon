@@ -32,9 +32,17 @@ On a RHEL 6 system, you should install the following:
 
     yum install git python-devel swig openssl-devel mysql-devel libxml2-devel libxslt-devel gcc gcc-c++
 
+You also need to install lessc which is maybe available on your distro.
+
 The above should work well for similar RPM-based distributions. For
 other distros or platforms, you will obviously need to convert as
 appropriate.
+
+On a Debian / Ubuntu system, you should install the following:
+
+::
+
+    apt-get install git python-dev libssl-dev libxml2-dev libxslt-dev gcc gcc-c++ node-less
 
 Then, you'll want to use the ``easy_install`` utility to set up a few
 other tools:
