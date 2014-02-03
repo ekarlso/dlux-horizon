@@ -89,7 +89,7 @@ and have the application start on port 8000. The DLUX dashboard will
 be located at http://localhost:8000
 
 If you wish to access it remotely (i.e., not just from localhost), you
-need to open port 8080 in iptables:
+need to open port 8000 in iptables:
 
 ::
 
