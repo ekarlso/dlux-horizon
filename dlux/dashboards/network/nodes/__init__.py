@@ -13,3 +13,13 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+from dlux.api import get_client
+
+
+def get_node(request, node_type, node_id):
+        client = get_client(request)
+        nodes = client.nodes.list()
+
+        for node in nodes:
+            if node.type == node_type and node.id == node_id:
+                return node

@@ -64,4 +64,3 @@ class ConnectionsTable(tables.DataTable):
 
     def get_object_id(self, datum):
         return keys_as_id(datum, keys=['id', 'type'])
-

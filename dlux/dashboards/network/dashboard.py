@@ -36,6 +36,7 @@ class NetworkPanels(horizon.PanelGroup):
     slug = 'openstack'
     panels = ('neutron_networks', 'neutron_subnets', 'neutron_ports')
 
+
 class Network(horizon.Dashboard):
     name = _("Network")
     slug = "network"

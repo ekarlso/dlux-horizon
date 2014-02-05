@@ -14,12 +14,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 from django.utils.translation import ugettext_lazy as _
-from django.shortcuts import render_to_response
 
 from horizon import tabs
 
 from dlux.api import get_client
-from dlux.dashboards.network.connections.ovsdb import tables as ovsdb_tables
 
 
 class OVSDBTab(tabs.Tab):
@@ -28,7 +26,7 @@ class OVSDBTab(tabs.Tab):
     template_name = "network/connections/detail_ovsdb.html"
 
     def get_context_data(self, request):
-        return {'table': ovsdb_tables.TABLES}
+        return {}
 
 
 class OverviewTab(tabs.Tab):
@@ -37,7 +35,18 @@ class OverviewTab(tabs.Tab):
     template_name = "network/connections/detail_overview.html"
 
     def get_context_data(self, request):
-        return {}
+        client = get_client(request)
+
+        data = {}
+
+        for c in client.connection_manager.list():
+            print c
+            if (c.type == self.tab_group.kwargs['node_type'] and
+                    c.id == self.tab_group.kwargs['node_id']):
+                data['connection'] = c
+                break
+
+        return data
 
 
 class DetailTabs(tabs.TabGroup):

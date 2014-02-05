@@ -19,6 +19,18 @@ from horizon import tabs
 
 from dlux.api import get_client
 from dlux.dashboards.network.nodes import tables
+from dlux.dashboards.network.nodes import get_node
+
+
+class OverviewTab(tabs.Tab):
+    name = _('Overview')
+    slug = 'overview'
+    template_name = 'network/nodes/detail_overview.html'
+
+    def get_context_data(self, request):
+        node = get_node(request, **self.tab_group.kwargs)
+        # FIXME(ekarlso): Move this into Client?
+        return {'node': node}
 
 
 class ConnectorTab(tabs.TableTab):
@@ -33,6 +45,6 @@ class ConnectorTab(tabs.TableTab):
 
 
 class DetailTabs(tabs.TabGroup):
-    slug = "access_security_tabs"
-    tabs = (ConnectorTab,)
+    slug = "detail"
+    tabs = (OverviewTab, ConnectorTab)
     sticky = True

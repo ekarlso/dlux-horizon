@@ -1,0 +1,20 @@
+{% load i18n sizeformat %}
+{% load url from future %}
+
+<h3>{% trans "Overview" %}</h3>
+
+<div class="info row-fluid detail">
+  <h4>{% trans "Properties" %}</h4>
+  <hr class="header_rule">
+  <dl>
+    <dt>{% trans "Type" %}</dt>
+    <dd>{{ connection.type }}</dd>
+
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ connection.id }}</dd>
+  </dl>
+</div>
+
+
+
+

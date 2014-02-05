@@ -59,7 +59,13 @@ horizonApp.config(function($stateProvider, $urlRouterProvider){
                         else if (typeof data === "object") {
                             return "object";
                         }
-                     };
+                    };
+
+                    $scope.showData = false;
+                    $scope.toggleShowData = function () {
+                        console.log("TOGGLE")
+                        $scope.showData = $scope.showData === false ? true : false;
+                    }
                 }
             }
         }

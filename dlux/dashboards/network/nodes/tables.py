@@ -16,8 +16,11 @@
 from django.core import urlresolvers
 from django.utils.translation import ugettext_lazy as _
 
+from horizon import forms
 from horizon import tables
 from dlux.utils.filters import keys_as_id
+from dlux.api import get_client
+from dlux.dashboards.network.nodes import get_node
 
 
 STATES = {0: 'DOWN', 1: 'UP'}
@@ -32,10 +35,33 @@ def get_node_link(datum):
     return link
 
 
+class UpdateCell(tables.UpdateAction):
+    def update_cell(self, request, datum, obj_id, cell_name, new_cell_value):
+        client = get_client(request)
+        node_id, node_type = obj_id.split('#')
+        client.nodes.create_property(
+            node_type, node_id, cell_name, new_cell_value)
+
+
+class UpdateRow(tables.Row):
+    ajax = True
+
+    def get_data(self, request, string):
+        node_id, node_type = string.split('#')
+
+        return get_node(request, node_type, node_id)
+
+
 class NodesTable(tables.DataTable):
+    needs_form_wrapper = True
     id = tables.Column(
         'id', verbose_name=_('Identifier'), link=get_node_link)
     type = tables.Column('type', verbose_name=_('Type'))
+    description = tables.Column(
+        lambda i: i.description,
+        verbose_name=_('Description'),
+        form_field=forms.CharField(required=True, widget=forms.Textarea()),
+        update_action=UpdateCell)
     mac_address = tables.Column(
         lambda i: i.properties['macAddress']['value'],
         verbose_name=_('Mac Address'))
@@ -43,6 +69,10 @@ class NodesTable(tables.DataTable):
     class Meta:
         name = 'nodes'
         verbose_name = _('Nodes')
+        row_class = UpdateRow
+
+    def get_object_id(self, datum):
+        return keys_as_id(datum, keys=['id', 'type'])
 
 
 class ConnectorTable(tables.DataTable):

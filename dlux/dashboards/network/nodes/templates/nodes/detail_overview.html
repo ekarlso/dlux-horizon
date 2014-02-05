@@ -1,0 +1,29 @@
+{% load i18n sizeformat %}
+{% load url from future %}
+
+<h3>{% trans "Overview" %}</h3>
+
+<div class="info row-fluid detail">
+  <h4>{% trans "Properties" %}</h4>
+  <hr class="header_rule">
+  <dl>
+    <dt>{% trans "Description" %}</dt>
+    <dd>{{ node.properties.description.value|default:_("N/A") }}</dd>
+
+    <dt>{% trans "Type" %}</dt>
+    <dd>{{ node.type }}</dd>
+
+    <dt>{% trans "ID" %}</dt>
+    <dd>{{ node.id }}</dd>
+
+    <dt>{% trans "Mac Address" %}</dt>
+    <dd>{{ node.properties.macAddress.value }}</dd>
+
+    <dt>Connected Since</dt>
+    <dd>{{ node.connected_since }}</dd>
+  </dl>
+</div>
+
+
+
+
