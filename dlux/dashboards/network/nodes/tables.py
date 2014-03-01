@@ -57,11 +57,11 @@ class NodesTable(tables.DataTable):
     id = tables.Column(
         'id', verbose_name=_('Identifier'), link=get_node_link)
     type = tables.Column('type', verbose_name=_('Type'))
-    description = tables.Column(
-        lambda i: i.description,
-        verbose_name=_('Description'),
-        form_field=forms.CharField(required=True, widget=forms.Textarea()),
-        update_action=UpdateCell)
+   # description = tables.Column(
+   #     lambda i: i.description,
+   #     verbose_name=_('Description'),
+   #     form_field=forms.CharField(required=True, widget=forms.Textarea()),
+   #     update_action=UpdateCell)
     mac_address = tables.Column(
         lambda i: i.properties['macAddress']['value'],
         verbose_name=_('Mac Address'))
