@@ -27,12 +27,12 @@ class CreateClassLink(tables.LinkAction):
 
 
 class DeleteClass(tables.DeleteAction):
-    data_type_singular = 'class'
-    data_type_plugar = 'classes'
+    data_type_singular = 'Class'
+    data_type_plugar = 'Classes'
 
     def delete(self, request, obj_id):
         client = get_client(request)
-        client.classes_app.classes.delete(obj_id)
+        client.flavor_app.classes.delete(obj_id)
 
 
 class ClassTable(tables.DataTable):

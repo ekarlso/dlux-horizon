@@ -32,7 +32,7 @@ class DeleteFlavor(tables.DeleteAction):
 
     def delete(self, request, obj_id):
         client = get_client(request)
-        client.flavor_app.flavor.delete(obj_id)
+        client.flavor_app.flavors.delete(obj_id)
 
 
 class FlavorTable(tables.DataTable):

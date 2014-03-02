@@ -26,7 +26,11 @@ LOG = logging.getLogger(__name__)
 
 
 class SetClassDetailsAction(workflows.Action):
-    name = forms.CharField(max_length=50, label=_('Class Name'))
+    name = forms.CharField(max_length=100, label=_('Class Name'))
+    application_property = forms.CharField(max_length=100,
+                                           label=_('App Property'))
+    application_policy = forms.CharField(max_length=100,
+                                         label=_('App Policy'))
 
     class Meta:
         name = _('Details')
@@ -34,7 +38,7 @@ class SetClassDetailsAction(workflows.Action):
 
 class SetClassDetails(workflows.Step):
     action_class = SetClassDetailsAction
-    contributes = ['name',]
+    contributes = ['name', 'application_property', 'application_policy']
 
 
 class CreateClass(workflows.Workflow):

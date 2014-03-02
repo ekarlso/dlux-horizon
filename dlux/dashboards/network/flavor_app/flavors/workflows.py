@@ -28,7 +28,22 @@ LOG = logging.getLogger(__name__)
 class SetFlavorDetailsAction(workflows.Action):
     name = forms.CharField(max_length=50, label=_('Flavor Name'))
     description = forms.CharField(max_length=140, label=('Description'))
-    fwd_class = forms.CharField(max_length=60, label=_('Class'))
+    fwd_class = forms.ChoiceField(label=_('Class'))
+
+    def populate_fwd_class_choices(self, request, context):
+        choices = []
+        client = api.get_client(request)
+        try:
+            classes = client.flavor_app.classes.list()
+            for c in classes:
+                tmp = (c.id, c.name)
+                choices.append(tmp)
+
+        except Exception:
+            return choices
+
+        self.fields['fwd_class'].choices = choices
+        return choices
 
     class Meta:
         name = _('Details')
@@ -51,7 +66,7 @@ class CreateFlavor(workflows.Workflow):
     def handle(self, request, context):
         client = api.get_client(request)
         try:
-            client.flavors.flavor.create(**context)
+            client.flavor_app.flavors.create(**context)
             return True
         except Exception:
             return False

@@ -28,7 +28,7 @@ class CreatePolicyLink(tables.LinkAction):
 
 class DeletePolicy(tables.DeleteAction):
     data_type_singular = 'Policy'
-    data_type_plugar = 'Policys'
+    data_type_plugar = 'Policies'
 
     def delete(self, request, obj_id):
         client = get_client(request)

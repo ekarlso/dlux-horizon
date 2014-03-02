@@ -26,9 +26,23 @@ LOG = logging.getLogger(__name__)
 
 
 class SetPolicyDetailsAction(workflows.Action):
-    name = forms.CharField(max_length=50, label=_('Policy Name'))
     tenant_uuid = forms.CharField(max_length=140, label=('Tenant ID'))
-    flavor = forms.CharField(max_length=60, label=_('Flavor'))
+    flavor = forms.ChoiceField(label=_('Flavor'))
+
+    def populate_flavor_choices(self, request, context):
+        choices = []
+        client = api.get_client(request)
+        try:
+            flavors = client.flavor_app.flavors.list()
+            for f in flavors:
+                tmp = (f.id, f.name)
+                choices.append(tmp)
+
+        except Exception:
+            return choices
+
+        self.fields['flavor'].choices = choices
+        return choices
 
     class Meta:
         name = _('Details')
@@ -36,7 +50,7 @@ class SetPolicyDetailsAction(workflows.Action):
 
 class SetPolicyDetails(workflows.Step):
     action_class = SetPolicyDetailsAction
-    contributes = ['name', 'tenant_uuid', 'flavor']
+    contributes = ['tenant_uuid', 'flavor']
 
 
 class CreatePolicy(workflows.Workflow):
