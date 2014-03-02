@@ -31,7 +31,10 @@ class FlavorTab(tabs.TableTab):
 
     def get_flavors_data(self):
         client = get_client(self.request)
-        return client.flavor_app.flavors.list()
+        data = client.flavor_app.flavors.list()
+        for d in data:
+            d.fwd_class = client.flavor_app.classes.get(str(d.fwd_class))
+        return data
 
 class ClassTab(tabs.TableTab):
     table_classes = [ClassTable]
@@ -52,8 +55,10 @@ class PolicyTab(tabs.TableTab):
 
     def get_policy_data(self):
         client = get_client(self.request)
-        return client.flavor_app.policy.list()
-
+        data = client.flavor_app.policy.list()
+        for d in data:
+            d.flavor = client.flavor_app.flavors.get(str(d.flavor))
+        return data
 
 class FlavorAppTabs(tabs.TabGroup):
     slug = "flavorapptab"

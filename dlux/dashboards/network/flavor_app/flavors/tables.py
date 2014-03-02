@@ -39,7 +39,8 @@ class FlavorTable(tables.DataTable):
     id = tables.Column('id', verbose_name=_('Id'))
     name = tables.Column('name', verbose_name=_('Name'))
     description = tables.Column('description', verbose_name='Description')
-    fwd_class = tables.Column('fwd_class', verbose_name='Forwarding Class')
+    fwd_class = tables.Column(lambda i: i.fwd_class.name,
+                              verbose_name='Forwarding Class')
 
     class Meta:
         name = 'flavors'

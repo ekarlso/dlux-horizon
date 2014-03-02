@@ -34,11 +34,10 @@ class DeletePolicy(tables.DeleteAction):
         client = get_client(request)
         client.flavor_app.policy.delete(obj_id)
 
-
 class PolicyTable(tables.DataTable):
     id = tables.Column('id', verbose_name=_('Id'))
     tenant_uuid = tables.Column('tenant_uuid', verbose_name=_('Tenant ID'))
-    flavor = tables.Column('flavor', verbose_name=_('Flavor'))
+    flavor = tables.Column(lambda i: i.flavor.name, verbose_name=_('Flavor'))
 
     class Meta:
         name = 'policy'
