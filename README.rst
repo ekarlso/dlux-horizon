@@ -32,7 +32,13 @@ On a RHEL 6 system, you should install the following:
 
     yum install git python-devel swig openssl-devel mysql-devel libxml2-devel libxslt-devel gcc gcc-c++
 
-You also need to install lessc which is maybe available on your distro.
+We use `lessc` for compiling the less stylesheets as the django plugin is painfully slow. 
+First you wull need to download and install NodeJS from http://nodejs.org/.
+The following command will install `lessc`
+
+::
+   
+   npm install -g lessc
 
 The above should work well for similar RPM-based distributions. For
 other distros or platforms, you will obviously need to convert as
