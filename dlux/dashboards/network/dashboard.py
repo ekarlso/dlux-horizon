@@ -37,10 +37,16 @@ class NetworkPanels(horizon.PanelGroup):
     panels = ('neutron_networks', 'neutron_subnets', 'neutron_ports')
 
 
+class AppPanels(horizon.PanelGroup):
+    name = _("Applications")
+    slug = 'applications'
+    panels = ('flavor_app',)
+
+
 class Network(horizon.Dashboard):
     name = _("Network")
     slug = "network"
-    panels = (NodePanels, ConfigPanels, NetworkPanels)
+    panels = (NodePanels, ConfigPanels, NetworkPanels, AppPanels)
     default_panel = "nodes"
     supports_tenants = False
 
