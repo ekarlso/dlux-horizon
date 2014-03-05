@@ -22,7 +22,7 @@ from horizon.utils import secret_key
 from dlux import exceptions
 
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT_PATH = os.path.abspath(os.path.join(TEST_DIR, ".."))
+ROOT_PATH = os.path.abspath(os.path.join(TEST_DIR, "../../"))
 
 SECRET_KEY = secret_key.generate_or_read_from_file(
     os.path.join(TEST_DIR, '.secret_key_store'))
@@ -55,6 +55,12 @@ SITE_BRANDING = 'OpenDaylight - User eXperience - DLUX'
 LOGIN_URL = '/auth/login/'
 LOGOUT_URL = '/auth/logout/'
 AUTH_PATH = '/controller/nb/v2/connectionmanager/nodes'
+LOGIN_REDIRECT_URL = '/'
+MEDIA_ROOT = os.path.abspath(os.path.join(ROOT_PATH, 'media'))
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.abspath(os.path.join(ROOT_PATH, 'static'))
+STATIC_URL = '/static/'
+COMPRESS_ROOT = STATIC_ROOT
 
 HORIZON_CONFIG = {
     'dashboards': ('network',),
@@ -79,6 +85,38 @@ AVAILABLE_CONTROLLERS = [
 
 NOSE_ARGS = ['--nocapture',
              '--nologcapture',
-             '--cover-package=openstack_dashboard',
+             '--cover-package=dlux',
              '--cover-inclusive',
              '--all-modules']
+
+STATICFILES_FINDERS = (
+    'compressor.finders.CompressorFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+COMPRESS_PRECOMPILERS = (
+    ('text/less', ('lessc {infile}')),
+)
+
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',
+)
+
+COMPRESS_ENABLED = True
+COMPRESS_OUTPUT_DIR = 'dashboard'
+COMPRESS_CSS_HASHING_METHOD = 'hash'
+COMPRESS_PARSER = 'compressor.parser.HtmlParser'
+
+
+COMPRESS_PRECOMPILERS = (
+    ('text/less', ('lessc {infile}')),
+)
+
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',
+)
+
+COMPRESS_ENABLED = True
+COMPRESS_OUTPUT_DIR = 'dashboard'
+COMPRESS_CSS_HASHING_METHOD = 'hash'
+COMPRESS_PARSER = 'compressor.parser.HtmlParser'
