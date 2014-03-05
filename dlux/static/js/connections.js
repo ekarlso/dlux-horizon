@@ -79,7 +79,7 @@ horizonApp.config(function($stateProvider, $urlRouterProvider){
 });
 
 // NOTE(ekarlso): Is there a better way to do this?
-horizonApp.run(
+angular.module('hz').run(
     ['$rootScope', '$state', '$stateParams',
     function($rootScope, $state, $stateParams) {
         $rootScope.$state = $state;

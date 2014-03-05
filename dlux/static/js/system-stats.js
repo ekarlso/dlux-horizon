@@ -1,6 +1,6 @@
 // Service to register all garph directives on a page.
 // TODO(ekarlso): Make functions only return the graph ?
-angular.module('horizonApp').service('graphService', [function () {
+angular.module('hz').service('graphService', [function () {
     var svc = {i: 0};
 
     svc.graphs = {};
@@ -58,7 +58,7 @@ angular.module('horizonApp').service('graphService', [function () {
 }]);
 
 
-angular.module('horizonApp').directive('rickshawGraph', ['$timeout', 'graphService', function($timeout, graphService) {
+angular.module('hz').directive('rickshawGraph', ['$timeout', 'graphService', function($timeout, graphService) {
     return {
         restrict: 'E',
         templateUrl: '/static/partials/directives/graph.html',
@@ -181,7 +181,7 @@ angular.module('horizonApp').directive('rickshawGraph', ['$timeout', 'graphServi
 }]);
 
 
-angular.module('horizonApp').controller('ControllerStatsCtrl', ['$scope', '$http', '$timeout', '$q', 'graphService', function ($scope, $http, $timeout, $q, graphService) {
+angular.module('hz').controller('ControllerStatsCtrl', ['$scope', '$http', '$timeout', '$q', 'graphService', function ($scope, $http, $timeout, $q, graphService) {
     $scope.interval = 1;
     $scope.sequence = 0
 
