@@ -1,0 +1,48 @@
+<h2>Statistics </h2>
+
+<form class="form-inline" style="clear: all">
+    <label class="control-label">Interval</label>
+    <input type="number" class="input-small" ng-model="interval" ng-change="changeInterval(interval)" min=0.5 style="width: 40px;"> {$ interval $}
+</form>
+
+<div>
+ <!--button class="btn btn-primary" ng-click="getStats()"><i class="icon-refresh icon-white"></i></button-->
+
+<div class="span4">
+<br/>
+<h3>Threading</h3>
+Current: {$ stats.threading.ThreadCount $}<br/>
+Daemon: {$ stats.threading.DaemonThreadCount $}<br/>
+Peak: {$ stats.threading.PeakThreadCount $}<br/>
+Total: {$ stats.threading.TotalStartedThreadCount $}<br/>
+</div>
+
+<!--rickshaw-graph name="'threading'" series="threadingGraph" type="'line'" interval="interval" ignore-unknown="'true'"></rickshaw-graph-->
+
+<div class="span4">
+<h3>Memory</h3>
+
+
+
+<h5>Non-Heap<h5/>
+<span ng-repeat="(k, v) in stats.memory.NonHeapMemoryUsage">
+    {$ k $}: {$ v $}<br/>
+</span>
+
+<br/>
+
+<rickshaw-graph name="'NonHeapMemoryUsage'" series="memoryNonHeap" type="'area'" interval="interval" ignore-unknown="'true'"></rickshaw-graph>
+
+
+
+<h5>Heap:<h5/>
+<span ng-repeat="(k, v) in stats.memory.HeapMemoryUsage">
+    {$ k $}: {$ v $}<br/>
+</span>
+
+<br/>
+
+<rickshaw-graph name="'HeapMemoryUsage'" series="memoryHeap"  type="'area'" interval="interval" ignore-unknown="'true'"></rickshaw-graph>
+</div>
+
+</div>

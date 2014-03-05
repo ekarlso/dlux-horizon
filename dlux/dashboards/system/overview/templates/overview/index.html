@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Overview" %}{% endblock %}
+
+{% block page_header %}
+  {% include "horizon/common/_page_header.html" with title=_("Overview") %}
+{% endblock page_header %}
+
+{% block js %}
+    {% include "system/overview/_scripts.html" %}
+{% endblock %}
+
+{% block main %}
+<div class="row-fluid">
+  <div class="span12" ng-controller="ControllerStatsCtrl">
+    <div class="side-animate" ng-include=" '/static/partials/system/overview_stats.html' "></ng-include>
+    </div>
+  </div>
+</div>
+{% endblock %}
