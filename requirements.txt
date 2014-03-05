@@ -12,4 +12,5 @@ pytz>=2010h
 lockfile>=0.8
 -e git://github.com/openstack/horizon.git#egg=horizon
 -e git://github.com/ekarlso/python-odlclient.git#egg=python-odlclient
+-e git://github.com/ekarlso/python-jolokiaclient#egg=python-jolokiaclient
 requests
