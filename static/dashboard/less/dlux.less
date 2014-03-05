@@ -1,7 +1,8 @@
 @import "../../bootstrap/less/bootstrap.less";
-//@import "../../bootstrap/less/datepicker.less";
+@import "../../bootstrap/less/datepicker.less";
 @import "../../bootstrap/less/navs.less";
 @import "../../bootstrap/less/accordion.less";
+@import "accordion_nav.less";
 
 /* new clearfix */
 .clearfix:after {
@@ -54,20 +55,12 @@ dt {
   font-weight: bold;
 }
 
-#main_content {
-  padding-left: 250px;
-  padding-right: 25px;
-}
-
 .topbar {
-  background: @gray-lighter;
-  border-bottom: 1px solid @gray-lighter;
-  padding: 10px 25px;
-  margin-top: 0;
-  margin-left: -25px;
-  margin-bottom: 20px;
-  margin-right: -25px;
-  min-width: 700px;
+  background: @yellow;
+  #gradient > .vertical(#FFFFFF, #d8d8d8);
+  border-bottom: 1px solid #cccccc;
+  padding: 10px 0px 15px 0px;
+  height: 25px;
 }
 
 .topbar .switcher_bar {
@@ -76,17 +69,18 @@ dt {
   width: 160px;
   background-position: 140px center;
   margin-bottom: 0;
-  font-size: 11px;
-  margin-left: 20px;
+  margin-right: 10px;
   padding: 0;
   background-image: url(/static/dashboard/img/drop_arrow.png);
-  border: 1px solid #c0d9e4;
-  background-color: #e9f5fa;
+  background-color: #eee;
   background-repeat: no-repeat;
+  border: 1px solid #ccc;
+  border-bottom-color: #bbb;
+  .border-radius(4px);
+  .box-shadow(e('inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)'));
 }
 
 .topbar .switcher_bar a {
-  padding: 2px 10px 1px;
   margin-left: 0;
   display: block;
 }
@@ -95,21 +89,60 @@ dt {
   width: 130px;
 }
 
+.topbar .switcher_bar h3 {
+  padding: 2px 10px 1px;
+  font-size: 13px !important;
+  line-height: 20px;
+  color: #6e6e6e;
+  text-decoration: none;
+}
+
+.topbar .switcher_bar div {
+  padding: 2px 10px 1px;
+  font-size: 11px !important;
+  line-height: 20px;
+  color: #6e6e6e;
+  text-decoration: none;
+  overflow: hidden;
+  padding-right: 32px;
+  text-overflow: ellipsis;
+}
+
+.topbar .context-box {
+  display: inline;
+}
+
+#profile_editor_switcher {
+  width:auto;
+  max-width: 200px;
+  vertical-align: top;
+  white-space: nowrap;
+  background-image: url(/static/dashboard/img/profile_drop.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
 #user_info {
-    color: #888;
-    margin: auto 0;
+  color: #888;
+  margin: auto 10px;
+  padding-bottom: 15px;
+  padding-right: 25px;
 }
 
 #user_info > a {
-    margin-left: 25px;
-    font-size: 11px !important;
+  color: #6e6e6e;
+  margin-left: 15px;
+  line-height: 20px;
+  font-size: 13px !important;
 }
 
 .page-header {
-  margin: 0;
-  padding: 0;
-  border: 0;
+  margin: 0 0 5px 0;
+  padding: 0 0 5px 0;
+  border-bottom: 2px solid #e5e5e5;
   font-family: Roboto;
+  height: auto;
+  width: 100%;
 }
 
 h2 {
@@ -130,7 +163,7 @@ body {
 }
 
 #splash .login {
-  background: #fff url(/static/dashboard/img/logo.png) no-repeat center 35px;
+  background: #fff url(/static/dashboard/img/logo-splash.png) no-repeat center 35px;
   position: absolute;
   top: 80px;
   left: 50%;
@@ -180,10 +213,12 @@ body {
 }
 
 .sidebar {
-    background: @gray-dark;
-    border-right: 5px solid @gray-lighter;
-    border-bottom: 5px solid @gray-lighter;
+    background-color: #f9f9f9;
+    border-right: 5px solid #e5e5e5;
+    border-bottom: 5px solid #e5e5e5;
+    .border-radius(0 0 5px 0);
     float: left;
+    min-width: 231px;
 }
 
 .sidebar h4 {
@@ -203,20 +238,16 @@ body {
 h1.brand {
     width: 100%;
     margin: 0;
-    background-color: @white;
-    padding-bottom: 40px;
 }
 
 h1.brand a {
-    background: url(/static/dashboard/img/logo.png) top left no-repeat;
+    background: url(/static/dashboard/img/logo.jpg) top left no-repeat;
     display: block;
     float: left;
-    width: 116px;
-    height: 123px;
+    width: 216px;
+    height: 34px;
     text-indent: -9999px;
-    margin-left: 56px;
-    margin-top: 15px;
-    margin-bottom: 25px;
+    margin-left: 16px;
 }
 
 
@@ -234,6 +265,7 @@ a.current_item:hover {
 
 a.current_item:hover h3, a.current_item:hover h4 {
     color: #39738c;
+    .border-radius(4px)
 }
 
 .sidebar .switcher_bar {
@@ -610,15 +642,15 @@ table form {
 
 .table_actions {
 
-    a.btn-create, a.btn-launch {
+    a.btn-create, button.btn-create, a.btn-launch {
       .btn-icon(-403px, -92px);
     }
 
-    a.btn-download {
+    a.btn-download, button.btn-download {
       .btn-icon(-91px, -19px);
     }
 
-    a.btn-upload {
+    a.btn-upload, button.btn-upload {
       .btn-icon(-283px, -92px);
     }
 
@@ -833,6 +865,11 @@ div.table_cell_wrapper {
   float: none;
 }
 
+.table_header .table_actions .table_search select {
+  margin-bottom: 0;
+  line-height: 22px;
+}
+
 .table_header .table_filter {
   vertical-align: bottom;
   margin-right: 20px;
@@ -854,7 +891,7 @@ div.table_cell_wrapper {
 /*
  * Bootstrap styles table backgrounds using nth-child(2n+1), which is
  * oblivious to hidden elements. The styles below allow us to override
- * the bootstrap style when neccessary by setting the odd/even classes.
+ * the bootstrap style when necessary by setting the odd/even classes.
  */
 .table-striped.datatable tbody {
   tr.odd td {
@@ -945,6 +982,12 @@ form label {
     top: 80px;
     margin-top: 0;
     position: absolute;
+}
+
+.modal.fullscreen {
+  width: 90%;
+  margin: auto;
+  left: 5%;
 }
 
 .modal.loading {
@@ -1319,6 +1362,10 @@ tr.terminated {
   border-bottom: 0 none;
 }
 
+#content_body {
+  padding-left: 255px;
+  padding-right: 25px;
+}
 .tab_wrapper {
   padding-top: 50px;
 }
