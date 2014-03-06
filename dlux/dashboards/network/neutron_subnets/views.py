@@ -30,6 +30,7 @@ class IndexView(horizon_tables.DataTableView):
         client = get_client(self.request)
         return client.neutron.subnets.list()
 
+
 class DetailView(tabs.TabView):
     tab_group_class = subnet_tabs.SubnetDetailTabs
     template_name = 'network/neutron_subnets/detail.html'

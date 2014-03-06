@@ -18,10 +18,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from horizon import forms
 from horizon import tables
-from dlux.utils.filters import keys_as_id
+
 from dlux.api import get_client
 from dlux.dashboards.network.nodes import get_node
-
+from dlux.utils.filters import keys_as_id
 
 STATES = {0: 'DOWN', 1: 'UP'}
 

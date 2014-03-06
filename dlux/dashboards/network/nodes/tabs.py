@@ -18,8 +18,8 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import tabs
 
 from dlux.api import get_client
-from dlux.dashboards.network.nodes import tables
 from dlux.dashboards.network.nodes import get_node
+from dlux.dashboards.network.nodes import tables
 
 
 class OverviewTab(tabs.Tab):

@@ -15,7 +15,7 @@
 #    under the License.
 
 from horizon.test import helpers as test
-from time import sleep
+
 
 class BrowserTests(test.SeleniumTestCase):
     def test_splash(self):

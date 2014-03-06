@@ -15,13 +15,12 @@
 # under the License.
 
 from horizon import tables as horizon_tables
-from horizon import tabs as horizon_tabs
 from horizon.utils import memoized
 
 from dlux.api import get_client
 from dlux.dashboards.network.neutron_networks import tables
-from dlux.dashboards.network.neutron_subnets import tables as subnet_tables
 from dlux.dashboards.network.neutron_ports import tables as port_tables
+from dlux.dashboards.network.neutron_subnets import tables as subnet_tables
 
 
 class IndexView(horizon_tables.DataTableView):
@@ -31,6 +30,7 @@ class IndexView(horizon_tables.DataTableView):
     def get_data(self):
         client = get_client(self.request)
         return client.neutron.networks.list()
+
 
 class DetailView(horizon_tables.MultiTableView):
     table_classes = (subnet_tables.NeutronSubnetsTable,

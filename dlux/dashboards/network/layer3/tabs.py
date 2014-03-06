@@ -13,14 +13,15 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import tabs
 
 from dlux.api import get_client
-from dlux.dashboards.network.layer3.subnets.tables import SubnetsTable
 from dlux.dashboards.network.layer3.staticroutes.tables \
     import StaticRoutesTable
+from dlux.dashboards.network.layer3.subnets.tables import SubnetsTable
 
 
 class SubnetsTab(tabs.TableTab):

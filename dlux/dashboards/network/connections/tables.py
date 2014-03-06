@@ -13,13 +13,14 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+
 from django.core import urlresolvers
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import tables
 
-from dlux.utils.filters import keys_as_id
 from dlux.api import get_client
+from dlux.utils.filters import keys_as_id
 
 
 def get_connection_link(datum):

@@ -40,7 +40,6 @@ class OverviewTab(tabs.Tab):
         data = {}
 
         for c in client.connection_manager.list():
-            print c
             if (c.type == self.tab_group.kwargs['node_type'] and
                     c.id == self.tab_group.kwargs['node_id']):
                 data['connection'] = c

@@ -14,15 +14,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-
 from horizon import tables as horizon_tables
 from horizon import tabs as horizon_tabs
 from horizon import workflows as horizon_workflows
 
 from dlux.api import get_client
 from dlux.dashboards.network.connections import tables
-from dlux.dashboards.network.connections import workflows
 from dlux.dashboards.network.connections import tabs
+from dlux.dashboards.network.connections import workflows
 
 
 class IndexView(horizon_tables.DataTableView):

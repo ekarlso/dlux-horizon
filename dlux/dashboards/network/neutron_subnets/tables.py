@@ -16,7 +16,9 @@
 
 from django.core import urlresolvers
 from django.utils.translation import ugettext_lazy as _
+
 from horizon import tables
+
 
 def get_subnet_link(datum):
     view = "horizon:network:neutron_subnets:detail"
@@ -26,6 +28,7 @@ def get_subnet_link(datum):
     else:
         link = None
     return link
+
 
 class NeutronSubnetsTable(tables.DataTable):
     id = tables.Column('id',
@@ -38,5 +41,3 @@ class NeutronSubnetsTable(tables.DataTable):
     class Meta:
         name = 'neutron_subnets'
         verbose_name = _('Neutron Subnets')
-
-

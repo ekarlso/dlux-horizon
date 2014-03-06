@@ -17,9 +17,8 @@ from django.conf.urls import include  # noqa
 from django.conf.urls import patterns  # noqa
 from django.conf.urls import url  # noqa
 
-
-from dlux.dashboards.network.connections import views
 from dlux.dashboards.network.connections.ovsdb import urls as ovsdb_urls
+from dlux.dashboards.network.connections import views
 
 
 urlpatterns = patterns(

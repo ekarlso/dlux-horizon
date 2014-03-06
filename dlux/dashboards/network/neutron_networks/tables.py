@@ -18,9 +18,9 @@ from django.core import urlresolvers
 from django.utils.translation import ugettext_lazy as _
 from horizon import tables
 
-from dlux.utils.filters import keys_as_id
 
 STATES = {0: 'DOWN', 1: 'UP'}
+
 
 def get_network_link(datum):
     view = "horizon:network:neutron_networks:detail"
@@ -30,6 +30,7 @@ def get_network_link(datum):
     else:
         link = None
     return link
+
 
 class NeutronNetworksTable(tables.DataTable):
     id = tables.Column('id',
@@ -50,6 +51,7 @@ class NeutronNetworksTable(tables.DataTable):
     def get_object_id(self, datum):
         return datum.id
 
+
 class NeutronNetworkDetailTable(tables.DataTable):
     id = tables.Column('id', verbose_name=_('Identifier'))
     name = tables.Column('name', verbose_name=_('Name'))
@@ -58,7 +60,3 @@ class NeutronNetworkDetailTable(tables.DataTable):
     class Meta:
         name = 'neutron_networks'
         verbose_name = _('Neutron Networks')
-
-
-
-

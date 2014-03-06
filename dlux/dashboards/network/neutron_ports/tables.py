@@ -18,6 +18,7 @@ from django.core import urlresolvers
 from django.utils.translation import ugettext_lazy as _
 from horizon import tables
 
+
 def get_port_link(datum):
     view = "horizon:network:neutron_ports:detail"
     if datum.id:
@@ -27,6 +28,7 @@ def get_port_link(datum):
         link = None
     return link
 
+
 def get_network_link(datum):
     view = "horizon:network:neutron_networks:detail"
     if datum.id:
@@ -35,6 +37,7 @@ def get_network_link(datum):
     else:
         link = None
     return link
+
 
 class NeutronPortsTable(tables.DataTable):
     id = tables.Column('id',
@@ -49,5 +52,3 @@ class NeutronPortsTable(tables.DataTable):
     class Meta:
         name = 'neutron_ports'
         verbose_name = _('Neutron Ports')
-
-

@@ -16,6 +16,7 @@
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import tables
+
 from dlux.api import get_client
 
 

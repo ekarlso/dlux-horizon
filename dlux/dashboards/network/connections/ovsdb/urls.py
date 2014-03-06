@@ -1,6 +1,7 @@
 # Copyright 2014 Hewlett-Packard Development Company, L.P.
 #
 # Author: Endre Karlson <endre.karlson@hp.com>
+# Author: Dave Tucker <dave.j.tucker@hp.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -13,9 +14,9 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+
 from django.conf.urls import patterns  # noqa
 from django.conf.urls import url  # noqa
-
 
 from dlux.dashboards.network.connections.ovsdb import views
 

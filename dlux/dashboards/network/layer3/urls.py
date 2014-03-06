@@ -17,10 +17,10 @@ from django.conf.urls import include  # noqa
 from django.conf.urls import patterns  # noqa
 from django.conf.urls import url  # noqa
 
-from dlux.dashboards.network.layer3 import views
 from dlux.dashboards.network.layer3.staticroutes import urls \
     as staticroutes_urls
 from dlux.dashboards.network.layer3.subnets import urls as subnet_urls
+from dlux.dashboards.network.layer3 import views
 
 urlpatterns = patterns(
     '',

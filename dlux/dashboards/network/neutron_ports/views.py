@@ -21,6 +21,7 @@ from dlux.api import get_client
 from dlux.dashboards.network.neutron_ports import tables
 import dlux.dashboards.network.neutron_ports.tabs as port_tabs
 
+
 class IndexView(horizon_tables.DataTableView):
     template_name = "network/neutron_ports/index.html"
     table_class = tables.NeutronPortsTable
@@ -28,6 +29,7 @@ class IndexView(horizon_tables.DataTableView):
     def get_data(self):
         client = get_client(self.request)
         return client.neutron.ports.list()
+
 
 class DetailView(horizon_tabs.TabView):
     tab_group_class = port_tabs.PortDetailTabs
