@@ -1,3 +1,5 @@
+.. image:: https://travis-ci.org/ekarlso/dlux-horizon.png?branch=master   :target: https://travis-ci.org/ekarlso/dlux-horizon
+
 Setup
 =====
 
