@@ -5,3 +5,6 @@ python:
 install: "pip install -r requirements.txt -r test-requirements.txt"
 script: tox -e pep8
         "./run_tests.sh -c --with-selenium"
+notifications:
+  irc:
+    - "chat.freenode.net#opendaylight-dlux"
