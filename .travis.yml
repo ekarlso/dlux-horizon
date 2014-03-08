@@ -9,7 +9,6 @@ install:
 script: 
   - tox -e pep8
   - "./run_tests.sh -c -V --with-selenium"
-
 notifications:
   irc:
     - "chat.freenode.net#opendaylight-dlux"
