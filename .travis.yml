@@ -6,6 +6,7 @@ cache:
   - pip
 install: 
   - "pip install -r requirements.txt -r test-requirements.txt"
+  - "apt-get -qq install firefox"
 script: 
   - tox -e pep8
   - "./run_tests.sh -c -V --with-selenium"
