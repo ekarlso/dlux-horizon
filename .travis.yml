@@ -4,12 +4,19 @@ python:
   - "2.7"
 cache: 
   - pip
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 install: 
   - "pip install -r requirements.txt -r test-requirements.txt"
-  - "sudo apt-get -qq install firefox"
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - python manage.py runserver &
+  - sleep 3
 script: 
   - "./run_tests.sh -N pep8"
-  - "./run_tests.sh -c -V --with-selenium"
+  - "./run_tests.sh -N --with-selenium"
 notifications:
   irc:
     - "chat.freenode.net#opendaylight-dlux"
